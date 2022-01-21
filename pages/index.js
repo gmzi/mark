@@ -1,19 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Table from '../components/Table';
 
 import React, { useState, useEffect } from 'react';
-import useSWR from 'swr';
-
-const API_KEY = process.env.API_KEY;
-
-const fetcher = (...args) => fetch(...args).then((res) => {
-  console.log(res)
-  res.json()
-});
-
-
 
 export default function Home() {
 
@@ -37,20 +26,14 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // fetch(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${formData.ticker1}&apikey=${API_KEY}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     // setIncomeStatement(data)
-    //   })
   }, [formData])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const symbol = formData.ticker1
-    setLinks({ symbol: symbol, data: [dividendsLast16, dividendsLast10, totalReturns10Y] })
-    // window.open(dividendsLast10.url)
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   const symbol = formData.ticker1
+  //   setLinks({ symbol: symbol, data: [dividendsLast16, dividendsLast10, totalReturns10Y] })
+  // window.open(dividendsLast10.url)
+  // }
 
   const handleClearSearch = () => {
     setFormData(() => (initialState))
@@ -84,7 +67,7 @@ export default function Home() {
         <div className={styles.grid}>
           <h1>McMarket</h1>
 
-          <form onSubmit={handleSubmit} onChange={handleChange}>
+          <form onChange={handleChange}>
             <label htmlFor="ticker1" />
             <input id="ticker1" type="text" name="ticker1" placeholder="ticker" value={formData.ticker1} onChange={handleChange} />
             <button type="button" onClick={handleClearSearch}>clear</button>
