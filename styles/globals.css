@@ -12,6 +12,19 @@ a {
   line-height: 1.5rem;
 }
 
+span {
+  font-weight: bold;
+  font-size: xx-large;
+  color:#aa06f9
+
+}
+
 * {
   box-sizing: border-box;
 }
+
+form {
+ display: flex;
+ flex-direction: column;
+}
+

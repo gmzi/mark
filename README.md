@@ -1,3 +1,68 @@
+# FINANCIAL METRICS 
+
+## stock screening
+
+url: https://www.cnbc.com/quotes/SYMBOL
+
+- gross income (total earnings before costs and taxes)
+- net income (sales minus costs of operation, materials and taxes)
+
+- Earnings Per Share (EPS)
+- Average Per share earnings last 10 yrs. (https://www.cnbc.com/quotes/JPM?tab=earnings)
+
+- P/E ratio (stock price / EPS, <10: low, >10<20: moderate, >20: expensive )
+
+- Growth rate of Earnings per Share (https://www.cnbc.com/quotes/JPM?tab=earnings)
+
+- Dividend payments (last 10 years, quarterly). Check if dividends are continuous, and their progress. (trailing 5Y on cnbc)
+
+- Market capitalization (total stock value). More than 10B is a "large" company. 
+
+- Target price (by analysts)
+- Beta
+- Alpha
+
+## graham 4 rules to stock selection:
+1. adequate though not excessive diversification in portfolio. 
+2. company large, respected and conservatively financed. ("common stock at book value represents at least half of the total capitalization, including all bank debt", graham, p.122)
+3. long record of continuous dividend payments. 
+4. price limits:
+    - max price: Average EPS of last ~7 years X 25. 
+    - Min price: Average EPS of last 12 months X 20. 
+
+
+## ETFs
+
+- [dividend payments last 10Y](https://www.barrons.com/market-data/funds/VIG)
+- [dividend payments last 16Y](https://finance.yahoo.com/quote/VIG/history?period1=1146528000&period2=1642723200&interval=capitalGain%7Cdiv%7Csplit&filter=div&frequency=1mo&includeAdjustedClose=true)
+
+- [total returns last 20 years](https://finance.yahoo.com/quote/VIG/performance?p=VIG) 
+
+- Dividend return %
+- yield
+- alpha
+- beta
+- turnover rate
+- expense ratio / managment fees
+- net assets
+- holdings
+
+
+# FEATURES
+- [ ] calculation: Earnings per share 10 years, calculate the growth rate. 
+- [ ] graphic with the average earnings of last 10 years (EPS or total earnings, tbd). Alpha vantage -> earnings. 
+- [ ] graphic with per share earnings last 10years or last 10 quarters (to determine if it's a growth stock). Alpha vantage EARNINGS 
+- [ ] graphic with dividends quarterly last 10 years.
+
+
+
+
+docs: https://pandas-datareader.readthedocs.io/en/latest/remote_data.html#remote-data-alphavantage
+
+
+
+------------------
+
 # API
 
 [alphavantage](https://www.alphavantage.co)

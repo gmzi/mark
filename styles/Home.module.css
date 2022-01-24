@@ -12,10 +12,6 @@
   align-items: center;
 }
 
-.list-and-ticker {
-  border: 1px solid red;
-}
-
 .footer {
   display: flex;
   flex: 1;
@@ -118,3 +114,4 @@
     flex-direction: column;
   }
 }
+
