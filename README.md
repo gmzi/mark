@@ -4,12 +4,17 @@
 
 url: https://www.cnbc.com/quotes/SYMBOL
 
-- gross income (total earnings before costs and taxes)
-- net income (sales minus costs of operation, materials and taxes)
+- financials:
+    - balance sheet (https://www.cnbc.com/quotes/JPM?tab=financials#timePeriod)
+    - income statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=incomeStatement)
+        - gross income (total earnings before costs and taxes)
+        - net income (sales minus costs of operation, materials and taxes)
+    - cash flow statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=cashFlowStatement)
+
+    - sec fillings (https://apps.cnbc.com/view.asp?symbol=MELI&uid=stocks/sec)
 
 - Earnings Per Share (EPS)
 - Average Per share earnings last 10 yrs. (https://www.cnbc.com/quotes/JPM?tab=earnings)
-
 - P/E ratio (stock price / EPS, <10: low, >10<20: moderate, >20: expensive )
 
 - Growth rate of Earnings per Share (https://www.cnbc.com/quotes/JPM?tab=earnings)

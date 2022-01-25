@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import React, { useState, useEffect } from 'react';
-import LinksList from '../components/LinksList';
+import StockLinkList from '../components/StockLinkList';
+import EtfLinkList from '../components/EtfLinkList';
 
 export default function Home() {
   const initialState = {
@@ -56,8 +57,11 @@ export default function Home() {
             <input id="etfTicker" type="text" name="etfTicker" placeholder="ETF ticker" value={formData.etfTicker} onChange={handleChange} />
             <button type="button" onClick={handleClearSearch}>Clear</button>
           </form >
+          {formData.stockTicker !== '' ? (
+            <StockLinkList stockTicker={formData.stockTicker} />
+          ) : null}
           {formData.etfTicker !== '' ? (
-            <LinksList etfTicker={formData.etfTicker} />
+            <EtfLinkList etfTicker={formData.etfTicker} />
           ) : null}
         </div>
       </main >
