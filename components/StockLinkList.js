@@ -1,5 +1,6 @@
 import React from 'react';
-import Source from '../classes/source';
+import Source from '../helpers/source';
+import openLink from '../helpers/functions';
 
 export default function StockLinkList({ stockTicker }) {
 
@@ -7,16 +8,9 @@ export default function StockLinkList({ stockTicker }) {
 
     const source = new Source(ticker)
 
-    console.log(source.balance_sheet().url)
-
     const handleClick = (e) => {
         const prop = e.target.id;
-        const windowObject = window.open(`${source[prop]().url}`,
-            `${ticker}-${source[e.target.id].title}`,
-            // "left=100,bottom=100,width=320,height=320"
-            "right=100, top=900, width=500, popup=yes, rel=noopener, rel=noreferrer"
-        );
-        windowObject.focus()
+        openLink(prop, source, ticker)
     }
 
     return (

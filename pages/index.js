@@ -42,13 +42,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>McMarket</title>
+        <title>Mark</title>
         <meta name="description" content="financial data links" />
         <link rel="icon" href="/favicon4.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1>McMarket</h1>
+        <h1>Mark</h1>
         <div className={styles.grid}>
           <form onChange={handleChange}>
             <label htmlFor="stockTicker" />
