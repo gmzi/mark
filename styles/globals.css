@@ -12,13 +12,6 @@ a {
   line-height: 1.5rem;
 }
 
-span {
-  font-weight: bold;
-  font-size: xx-large;
-  color:#aa06f9
-
-}
-
 * {
   box-sizing: border-box;
 }
@@ -28,3 +21,29 @@ form {
  flex-direction: column;
 }
 
+.divider {
+  width: 100px;
+  size: 150px;
+}
+
+span {
+  font-weight: bold;
+  font-size: xx-large;
+  margin: 0px 0px;
+  padding: 0px 0px;
+
+}
+
+.stockSpan {
+  /* color:#aa06f9; */
+  color: #7B06BF;
+}
+
+.etfSpan {
+  color: #49BF06;
+}
+
+ul {
+  margin: 1rem 0rem;
+  padding: 0rem 1.6rem;
+}

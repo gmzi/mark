@@ -15,11 +15,13 @@ export default function EtfLinksList({ etfTicker }) {
 
     return (
         <>
-            <p>Links for ETF ticker <span>{ticker}</span></p>
+            <div>
+                <span className="etfSpan">{ticker}</span>
+            </div>
             <ul>
-                <button onClick={handleClick} id={'dividendsLast10'}>{source.dividendsLast10().title}</button>
-                <button onClick={handleClick} id="totalReturns10Y">{source.totalReturns10Y().title}</button>
-                <button onClick={handleClick} id="dividendsLast16">{source.dividendsLast16().title}</button>
+                <li><button onClick={handleClick} id="totalReturns10Y">{source.totalReturns10Y().title}</button></li>
+                <li><button onClick={handleClick} id={'dividendsLast10'}>{source.dividendsLast10().title}</button></li>
+                <li><button onClick={handleClick} id="dividendsLast16">{source.dividendsLast16().title}</button></li>
             </ul>
         </>
     )

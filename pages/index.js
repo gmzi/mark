@@ -12,7 +12,6 @@ export default function Home() {
   }
 
   const [formData, setFormData] = useState(initialState)
-  const [links, setLinks] = useState()
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -27,39 +26,43 @@ export default function Home() {
   useEffect(() => {
   }, [formData])
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   const symbol = formData.etfTicker
-  //   setLinks({ symbol: symbol, data: [dividendsLast16, dividendsLast10, totalReturns10Y] })
-  // window.open(dividendsLast10.url)
-  // }
-
   const handleClearSearch = () => {
     setFormData(() => (initialState))
-    setLinks(false)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
   }
 
   return (
     <div className={styles.container}>
       <Head>
         <title>Mark</title>
-        <meta name="description" content="financial data links" />
         <link rel="icon" href="/favicon4.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1>Mark</h1>
+        <h2>Stocks</h2>
+        <form onChange={handleChange} onSubmit={handleSubmit}>
+          <label htmlFor="stockTicker" />
+          <input id="stockTicker" type="text" name="stockTicker" placeholder="Stock ticker" value={formData.stockTicker} onChange={handleChange} />
+          <label htmlFor="etfTicker" />
+          <input id="etfTicker" type="text" name="etfTicker" placeholder="ETF ticker" value={formData.etfTicker} onChange={handleChange} />
+          <div>
+            <input type="submit"></input>
+            <button onClick={handleClearSearch}>clear</button>
+          </div>
+        </form >
         <div className={styles.grid}>
-          <form onChange={handleChange}>
-            <label htmlFor="stockTicker" />
-            <input id="stockTicker" type="text" name="stockTicker" placeholder="Stock ticker" value={formData.stockTicker} onChange={handleChange} />
-            <label htmlFor="etfTicker" />
-            <input id="etfTicker" type="text" name="etfTicker" placeholder="ETF ticker" value={formData.etfTicker} onChange={handleChange} />
-            <button type="button" onClick={handleClearSearch}>Clear</button>
-          </form >
           {formData.stockTicker !== '' ? (
             <StockLinkList stockTicker={formData.stockTicker} />
           ) : null}
+        </div>
+        {formData.stockTicker !== "" && formData.etfTicker !== '' ? (
+          <hr className="divider"></hr>
+        ) : null}
+        <div className={styles.grid}>
           {formData.etfTicker !== '' ? (
             <EtfLinkList etfTicker={formData.etfTicker} />
           ) : null}
