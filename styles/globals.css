@@ -26,6 +26,10 @@ form {
   size: 150px;
 }
 
+.container {
+  display: flex;
+}
+
 span {
   font-weight: bold;
   font-size: xx-large;
@@ -34,16 +38,31 @@ span {
 
 }
 
+.ticker-and-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .stockSpan {
-  /* color:#aa06f9; */
-  color: #7B06BF;
+  color: #8E07DE;
 }
 
 .etfSpan {
-  color: #49BF06;
+  color: #07C2DE
 }
 
 ul {
   margin: 1rem 0rem;
   padding: 0rem 1.6rem;
+}
+
+.btn-close {
+  background-color: inherit;
+  border-radius: 5px;
+}
+
+.btn-close:hover {
+  box-shadow: 0px 2px 2px rgb(187, 186, 186);
 }

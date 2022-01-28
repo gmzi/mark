@@ -12,11 +12,11 @@ export default function Home() {
   }
 
   const [formData, setFormData] = useState(initialState)
+  const [stockTickers, setStockTickers] = useState([])
+  const [etfTickers, setEtfTickers] = useState([])
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
-    // console.log('input id', e.target.id)
-    // console.log('value', e.target.value)
     setFormData((data) => ({
       ...data,
       [name]: value
@@ -30,9 +30,53 @@ export default function Home() {
     setFormData(() => (initialState))
   }
 
+  function isDuplicate(array, value) {
+    if ([...array].includes(value)) {
+      alert('already displayed')
+      return true;
+    }
+    return;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (formData.stockTicker !== '') {
+      if (isDuplicate(stockTickers, formData.stockTicker)) {
+        const newFormState = { stockTicker: '', etfTicker: formData.etfTicker }
+        setFormData(() => newFormState)
+        return;
+      }
+      const newTickers = [...stockTickers, formData.stockTicker]
+      setStockTickers(newTickers)
+    }
+    if (formData.etfTicker !== '') {
+      if (isDuplicate(etfTickers, formData.etfTicker)) {
+        const newFormState = { stockTicker: formData.stockTicker, etfTicker: '' }
+        setFormData(() => newFormState)
+        return;
+      }
+      const newTickers = [...etfTickers, formData.etfTicker]
+      setEtfTickers(newTickers)
+    }
+    setFormData(() => (initialState))
+    return;
   }
+
+  const remove = (list, ticker) => {
+    if (list === 'stock') {
+      const removedArr = [...stockTickers].filter((s) => s !== ticker)
+      setStockTickers(removedArr)
+      return;
+    }
+    if (list === 'etf') {
+      const removedArr = [...etfTickers].filter((e) => e !== ticker)
+      setEtfTickers(removedArr)
+      return;
+    }
+  }
+
+  const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
+  const etfList = etfTickers.map((e, i) => <EtfLinkList key={`${i}-${e}`} etfTicker={e} remove={remove} />)
 
   return (
     <div className={styles.container}>
@@ -43,7 +87,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Mark</h1>
-        <h2>Stocks</h2>
         <form onChange={handleChange} onSubmit={handleSubmit}>
           <label htmlFor="stockTicker" />
           <input id="stockTicker" type="text" name="stockTicker" placeholder="Stock ticker" value={formData.stockTicker} onChange={handleChange} />
@@ -55,17 +98,13 @@ export default function Home() {
           </div>
         </form >
         <div className={styles.grid}>
-          {formData.stockTicker !== '' ? (
-            <StockLinkList stockTicker={formData.stockTicker} />
-          ) : null}
+          {stockList}
         </div>
-        {formData.stockTicker !== "" && formData.etfTicker !== '' ? (
+        {stockList.length && etfList.length ? (
           <hr className="divider"></hr>
         ) : null}
         <div className={styles.grid}>
-          {formData.etfTicker !== '' ? (
-            <EtfLinkList etfTicker={formData.etfTicker} />
-          ) : null}
+          {etfList}
         </div>
       </main >
 

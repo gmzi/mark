@@ -67,7 +67,3 @@ export default class Source {
         }
     }
 }
-
-const algo = new Source('ALGO');
-
-console.log(algo.balance_sheet().url)
