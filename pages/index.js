@@ -108,9 +108,9 @@ export default function Home() {
         </div>
       </main >
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
-          href="gastonmazieres.com"
+          href="https://github.com/gmzi/mcmarket"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -119,7 +119,7 @@ export default function Home() {
             gmzi
           </span>
         </a>
-      </footer>
+      </footer> */}
     </div >
   )
 }
