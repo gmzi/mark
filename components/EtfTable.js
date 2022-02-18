@@ -28,24 +28,28 @@ export default function EtfTable({ etfTicker, remove }) {
     }
 
     if (error) {
-        return "error"
+        console.log(error)
+        return null
     }
     if (!data) return <h1>loading</h1>
 
+    if (data) {
+        console.log(data)
+    }
+
     return (
         <div className={styles.container}>
-            <div>
-                <p>{data.symbol}</p>
-            </div>
             <div className={styles.tickerAndBtn}>
-                <span className={styles.etfSpan}>{ticker}</span>
+                <span className={`${styles.span} ${styles.etfSpan}`}>{ticker}</span>
                 <button onClick={handleClose}>X</button>
+                <ul>
+                    <li>turnover: {data.turnover_ratio}</li>
+                    <li>expense ratio: {data.expense_ratio}</li>
+                    <li>expense ratio: {data.expense_ratio}</li>
+                    <li>net assets: {data.net_assets}</li>
+                </ul>
+                {/* <div dangerouslySetInnerHTML={{ __html: data.return_history }} /> */}
             </div>
-            <ul className={styles.ul}>
-                <li><button onClick={handleClick} id="totalReturns10Y">{source.totalReturns10Y().title}</button></li>
-                <li><button onClick={handleClick} id={'dividendsLast10'}>{source.dividendsLast10().title}</button></li>
-                <li><button onClick={handleClick} id="dividendsLast16">{source.dividendsLast16().title}</button></li>
-            </ul>
         </div>
     )
 }

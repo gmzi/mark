@@ -26,7 +26,7 @@ export default function StockLinkList({ stockTicker, remove }) {
     return (
         <div className={styles.container}>
             <div className={styles.tickerAndBtn}>
-                <span className={styles.stockSpan}>{ticker}</span>
+                <span className={`${styles.span} ${styles.stockSpan}`}>{ticker}</span>
                 <button onClick={handleClose}>X</button>
             </div>
             <ul className={styles.ul}>
