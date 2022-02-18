@@ -24,7 +24,9 @@ url: https://www.cnbc.com/quotes/SYMBOL
 - Market capitalization (total stock value). More than 10B is a "large" company. 
 
 - Target price (by analysts)
+
 - Beta
+
 - Alpha
 
 ## graham 4 rules to stock selection:
@@ -39,18 +41,29 @@ url: https://www.cnbc.com/quotes/SYMBOL
 ## ETFs
 
 - [dividend payments last 10Y](https://www.barrons.com/market-data/funds/VIG)
+
 - [dividend payments last 16Y](https://finance.yahoo.com/quote/VIG/history?period1=1146528000&period2=1642723200&interval=capitalGain%7Cdiv%7Csplit&filter=div&frequency=1mo&includeAdjustedClose=true)
 
 - [total returns last 20 years](https://finance.yahoo.com/quote/VIG/performance?p=VIG) 
 
-- Dividend return %
-- yield
-- alpha
+- [turnover rate](https://finance.yahoo.com/quote/ESGV/profile?p=VIG)
+
+- [yield](https://finance.yahoo.com/quote/VIG?p=VIG&.tsrc=fin-srch)
+
+- [Dividend return since 2006](https://finance.yahoo.com/quote/VIG/history?period1=1146528000&period2=1645056000&interval=capitalGain%7Cdiv%7Csplit&filter=div&frequency=1mo&includeAdjustedClose=true)
+
+- [Dividend return since 2012](https://www.marketwatch.com/investing/fund/vig?mod=over_search)
+
+- [holdings]('https://www.marketwatch.com/investing/fund/vig?mod=over_search')
+
 - beta
-- turnover rate
+
+- alpha
+
 - expense ratio / managment fees
+
 - net assets
-- holdings
+
 
 
 # FEATURES

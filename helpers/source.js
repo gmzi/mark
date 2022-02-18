@@ -32,7 +32,8 @@ export default class Source {
     eps(symbol = this.symbol) {
         return {
             title: 'EPS',
-            url: `${symbol}`
+            // url: `${symbol}`
+            url: `https://www.cnbc.com/quotes/${symbol}`
         }
     }
 

@@ -4,11 +4,16 @@ import openLink from '../helpers/openLink';
 
 export default function StockLinkList({ stockTicker, remove }) {
 
+    // IMPLEMENT getServerSideProps OR useSWR to fetch the values from mark_server api, 
+    // and that nice Source class to provide the links.
+    // THEN find an ordered and nice table render, one left column for keys and several column for values  
+
     const ticker = stockTicker.toUpperCase();
 
     const source = new Source(ticker)
 
     const handleClick = (e) => {
+        e.preventDefault()
         const prop = e.target.id;
         openLink(prop, source, ticker)
     }
@@ -21,7 +26,7 @@ export default function StockLinkList({ stockTicker, remove }) {
         <div className="container">
             <div className="ticker-and-btn">
                 <span className="stockSpan">{ticker}</span>
-                <button className="btn-close" onClick={handleClose}>X</button>
+                <button onClick={handleClose}>X</button>
             </div>
             <ul>
                 <li><button onClick={handleClick} id="eps">{source.eps().title}</button></li>
