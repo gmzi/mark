@@ -1,5 +1,6 @@
 import React from 'react';
 import Source from '../helpers/source';
+import styles from '../styles/Home.module.css'
 import openLink from '../helpers/openLink';
 
 export default function StockLinkList({ stockTicker, remove }) {
@@ -23,12 +24,12 @@ export default function StockLinkList({ stockTicker, remove }) {
     }
 
     return (
-        <div className="container">
-            <div className="ticker-and-btn">
-                <span className="stockSpan">{ticker}</span>
+        <div className={styles.container}>
+            <div className={styles.tickerAndBtn}>
+                <span className={styles.stockSpan}>{ticker}</span>
                 <button onClick={handleClose}>X</button>
             </div>
-            <ul>
+            <ul className={styles.ul}>
                 <li><button onClick={handleClick} id="eps">{source.eps().title}</button></li>
                 <li><button onClick={handleClick} id="balance_sheet">{source.balance_sheet().title}</button></li>
                 <li><button onClick={handleClick} id="income_statement">{source.income_statement().title}</button></li>
