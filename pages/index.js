@@ -101,6 +101,8 @@ export default function Home() {
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
+  const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_payments.slice(0, 5)}`} data={obj.dividend_payments} />)
+  const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} />)
 
   console.log(allData)
   return (
@@ -168,6 +170,14 @@ export default function Home() {
               <tr>
                 <td>Sector Allocation</td>
                 {sectorList}
+              </tr>
+              <tr>
+                <td>Dividend History</td>
+                {dividendHistoryList}
+              </tr>
+              <tr>
+                <td>Return History</td>
+                {returnHistoryList}
               </tr>
             </tbody>
           </table>
