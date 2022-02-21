@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import StockLinkList from '../components/StockLinkList';
 import EtfLinkList from '../components/EtfLinkList';
 import EtfTable from '../components/EtfTable';
+import TableHead from '../components/TableHead';
+import useEtfData from '../helpers/useEtfData'
 
 export default function Home() {
   const initialState = {
@@ -15,6 +17,7 @@ export default function Home() {
   const [formData, setFormData] = useState(initialState)
   const [stockTickers, setStockTickers] = useState([])
   const [etfTickers, setEtfTickers] = useState([])
+  const { newData } = useEtfData()
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -23,9 +26,6 @@ export default function Home() {
       [name]: value
     }))
   }
-
-  useEffect(() => {
-  }, [formData])
 
   const handleClearSearch = () => {
     setFormData(() => (initialState))
@@ -79,6 +79,10 @@ export default function Home() {
   const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
   // const etfList = etfTickers.map((e, i) => <EtfLinkList key={`${i}-${e}`} etfTicker={e} remove={remove} />)
   const etfList = etfTickers.map((e, i) => <EtfTable key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+
+
+
 
   return (
     <div className={styles.container}>
@@ -106,7 +110,26 @@ export default function Home() {
           <hr className={styles.divider}></hr>
         ) : null}
         <div className={styles.grid}>
-          {etfList}
+          {/* {etfList} */}
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                {tableHeadList}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Turnover</td>
+              </tr>
+              <tr>
+                <td>Expense Ratio</td>
+              </tr>
+              <tr>
+                <td>Net assets</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </main >
 
