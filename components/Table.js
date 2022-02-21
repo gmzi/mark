@@ -1,22 +1,30 @@
-export default function Table() {
+export default function Table({ heads, turnover, expense, assets }) {
     return (
         <table>
             <thead>
                 <tr></tr>
-                <tr>VIG</tr>
+                {heads.map((h) => {
+                    <tr>{h}</tr>
+                })}
             </thead>
             <tbody>
                 <tr>
                     <td>Turnover</td>
-                    <td>4%</td>
+                    {turnover.map((t) => {
+                        <td>{t}</td>
+                    })}
                 </tr>
                 <tr>
                     <td>Expense Ratio</td>
-                    <td>0.5%</td>
+                    {expense.map((e) => {
+                        <td>{e}</td>
+                    })}
                 </tr>
                 <tr>
                     <td>Net assets</td>
-                    <dt>5.6B</dt>
+                    {assets.map((a) => {
+                        <td>{a}</td>
+                    })}
                 </tr>
             </tbody>
         </table>

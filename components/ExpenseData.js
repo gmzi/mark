@@ -10,15 +10,24 @@ const fetcher = (url) => fetch(url).then((res) => {
     return res.json()
 });
 
-export default function useEtfData({ etfTicker }) {
+export default function ExpenseData({ etfTicker }) {
 
     const { data, error } = useSWR(`${SERVER}/etf?ticker=${etfTicker}`, fetcher)
 
+    if (error) {
+        return null
+    }
+    if (!data) return <h1>loading</h1>
+
     if (data) {
         console.log(data)
-
-        return { data }
     }
-    return null;
+
+    return (
+        <td>
+            {data.expense_ratio}
+        </td>
+
+    )
 }
 

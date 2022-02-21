@@ -10,15 +10,12 @@ const fetcher = (url) => fetch(url).then((res) => {
     return res.json()
 });
 
-export default function useEtfData({ etfTicker }) {
-
-    const { data, error } = useSWR(`${SERVER}/etf?ticker=${etfTicker}`, fetcher)
-
-    if (data) {
-        console.log(data)
-
-        return { data }
-    }
-    return null;
+async function getEtfData(etfTicker) {
+    // const { data, error } = useSWR(`${SERVER}/etf?ticker=${etfTicker}`, fetcher)
+    const res = await fetch(`${SERVER}/etf?ticker=${etfTicker}`)
+    const result = await res.json();
+    return result;
 }
 
+
+export { getEtfData };

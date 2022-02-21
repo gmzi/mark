@@ -6,7 +6,10 @@ import StockLinkList from '../components/StockLinkList';
 import EtfLinkList from '../components/EtfLinkList';
 import EtfTable from '../components/EtfTable';
 import TableHead from '../components/TableHead';
-import useEtfData from '../helpers/useEtfData'
+import TableData from '../components/TableData';
+import NestedTable from '../components/NestedTable';
+
+const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function Home() {
   const initialState = {
@@ -17,7 +20,7 @@ export default function Home() {
   const [formData, setFormData] = useState(initialState)
   const [stockTickers, setStockTickers] = useState([])
   const [etfTickers, setEtfTickers] = useState([])
-  const { newData } = useEtfData()
+  const [allData, setAllData] = useState([])
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -31,6 +34,9 @@ export default function Home() {
     setFormData(() => (initialState))
   }
 
+  useEffect(() => {
+  }, [allData])
+
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
       alert('already displayed')
@@ -39,7 +45,7 @@ export default function Home() {
     return;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.stockTicker !== '') {
       if (isDuplicate(stockTickers, formData.stockTicker)) {
@@ -58,6 +64,11 @@ export default function Home() {
       }
       const newTickers = [...etfTickers, formData.etfTicker]
       setEtfTickers(newTickers)
+
+      const res = await fetch(`${SERVER}/etf?ticker=${formData.etfTicker}`)
+      const result = await res.json();
+      const newData = [...allData, result]
+      setAllData(newData)
     }
     setFormData(() => (initialState))
     return;
@@ -72,18 +83,26 @@ export default function Home() {
     if (list === 'etf') {
       const removedArr = [...etfTickers].filter((e) => e !== ticker)
       setEtfTickers(removedArr)
+      const removedData = [...allData].filter((obj) => obj.symbol !== ticker)
+      setAllData(removedData)
       return;
     }
   }
-
   const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
   // const etfList = etfTickers.map((e, i) => <EtfLinkList key={`${i}-${e}`} etfTicker={e} remove={remove} />)
-  const etfList = etfTickers.map((e, i) => <EtfTable key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  // const etfList = etfTickers.map((e, i) => <EtfTable key={`${i}-${e}`} etfTicker={e} remove={remove} />)
   const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  // const turnoverList = etfTickers.map((e, i) => <TurnoverData key={`${i}-${e}`} etfTicker={e} />)
+  // const expenseList = etfTickers.map((e, i) => <ExpenseData key={`${i}-${e}`} etfTicker={e} />)
+  const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
+  const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
+  const assetList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
+  const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
+  const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
+  const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
 
-
-
-
+  console.log(allData)
   return (
     <div className={styles.container}>
       <Head>
@@ -118,15 +137,37 @@ export default function Home() {
                 {tableHeadList}
               </tr>
             </thead>
+
+            {/* MAKE A FUCKING CONTEXT PROVIDER FROM HERE, AND CONSUME IT IN EACH ROW */}
+
             <tbody>
               <tr>
+                <td>Price $</td>
+                {priceList}
+              </tr>
+              <tr>
                 <td>Turnover</td>
+                {turnoverList}
               </tr>
               <tr>
                 <td>Expense Ratio</td>
+                {expenseList}
               </tr>
               <tr>
                 <td>Net assets</td>
+                {assetList}
+              </tr>
+              <tr>
+                <td>Beta</td>
+                {betaList}
+              </tr>
+              <tr>
+                <td>Yield</td>
+                {yieldList}
+              </tr>
+              <tr>
+                <td>Sector Allocation</td>
+                {sectorList}
               </tr>
             </tbody>
           </table>
