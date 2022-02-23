@@ -17,6 +17,25 @@ export default function Home() {
     etfTicker: '',
   }
 
+  const dataTemplate = {
+    "symbol": "-",
+    "price": "-",
+    "turnover_ratio": "-",
+    "fund_family": "-",
+    "expense_ratio": "-",
+    "net_assets": "-",
+    "yield": "-",
+    "nav": "-",
+    "legal_type": "-",
+    "dividend_history": "-",
+    "dividend_last": "-",
+    "holdings_10": "-",
+    "beta": "-",
+    "return_history": "-",
+    "sector_allocation": "-",
+    "lipper_ranking": "-"
+  }
+
   const [formData, setFormData] = useState(initialState)
   const [stockTickers, setStockTickers] = useState([])
   const [etfTickers, setEtfTickers] = useState([])
@@ -39,39 +58,72 @@ export default function Home() {
 
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
-      alert('already displayed')
       return true;
     }
     return;
+  }
+
+  function addStock(prevState, newData) {
+    const newTickers = [...prevState, newData]
+    setStockTickers(newTickers)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.stockTicker !== '') {
       if (isDuplicate(stockTickers, formData.stockTicker)) {
+        alert('already displayed')
         const newFormState = { stockTicker: '', etfTicker: formData.etfTicker }
         setFormData(() => newFormState)
         return;
       }
-      const newTickers = [...stockTickers, formData.stockTicker]
-      setStockTickers(newTickers)
+      addStock(stockTickers, formData.stockTicker)
+      // const newTickers = [...stockTickers, formData.stockTicker]
+      // setStockTickers(newTickers)
     }
     if (formData.etfTicker !== '') {
       if (isDuplicate(etfTickers, formData.etfTicker)) {
+        alert('already displayed')
         const newFormState = { stockTicker: formData.stockTicker, etfTicker: '' }
         setFormData(() => newFormState)
         return;
       }
       const newTickers = [...etfTickers, formData.etfTicker]
+
+      // RENDER NEW TICKER IN LIST
       setEtfTickers(newTickers)
 
+      // SEND REQUEST TO API
       const res = await fetch(`${SERVER}/etf?ticker=${formData.etfTicker}`)
-      const result = await res.json();
-      const newData = [...allData, result]
-      setAllData(newData)
+      if (res.ok) {
+        const result = await res.json();
+        dataTemplate = { ...result }
+        const newData = [...allData, dataTemplate]
+        setAllData(newData)
+        setFormData(() => (initialState))
+        return
+      }
+      // CHECK IF USER ENTERED A STOCK TICKER IN ETF INPUT, AND FIX IT, 
+      // SAME LOGIC TO BE APPLIED FOR MUTUAL FUNDS AND BONDS.
+      if (!isDuplicate(stockTickers, formData.etfTicker)) {
+        const stockRes = await fetch(`${SERVER}/stock?ticker=${formData.etfTicker}`)
+        if (stockRes.ok) {
+          alert('added to stock')
+          addStock(stockTickers, formData.etfTicker)
+          remove('etf', formData.etfTicker)
+          setFormData(() => (initialState))
+          return;
+        }
+        alert('thats not found')
+        remove('etf', formData.etfTicker)
+        setFormData(() => (initialState))
+        return;
+      }
+      alert('already in stock list')
+      remove('etf', formData.etfTicker)
+      setFormData(() => (initialState))
+      return;
     }
-    setFormData(() => (initialState))
-    return;
   }
 
   const remove = (list, ticker) => {
@@ -101,6 +153,7 @@ export default function Home() {
   const navList = allData.map((obj, i) => <TableData key={`${i}-${obj.nav}`} data={obj.nav} />)
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
+  const dividendLastList = allData.map((obj, i) => <TableData key={`${i}-${obj.dividend_last}`} data={obj.dividend_last} />)
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
   const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_history.slice(0, 5)}`} data={obj.dividend_history} />)
   const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} />)
@@ -132,7 +185,7 @@ export default function Home() {
         <div className={styles.grid}>
           {stockList}
         </div>
-        {stockList.length && etfList.length ? (
+        {stockList.length && etfTickers.length ? (
           <hr className={styles.divider}></hr>
         ) : null}
         <div className={styles.grid}>
@@ -172,6 +225,10 @@ export default function Home() {
                 <tr>
                   <td>Yield</td>
                   {yieldList}
+                </tr>
+                <tr>
+                  <td>Last Dividend</td>
+                  {dividendLastList}
                 </tr>
                 <tr>
                   <td>Sector Allocation</td>
