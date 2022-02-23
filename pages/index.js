@@ -193,7 +193,7 @@ export default function Home() {
             <table className={styles.table}>
               <thead className={styles.tHead}>
                 <tr className={styles.tr}>
-                  <th className={styles.th}></th>
+                  <th className={styles.emptyTh}></th>
                   {tableHeadList}
                 </tr>
               </thead>

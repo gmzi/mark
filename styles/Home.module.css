@@ -82,25 +82,23 @@
   padding: 1rem 1rem;
 }
 
-.tHead {
-  box-shadow: inset 0px 0px 0px 5px rgba(0, 0, 255, 0.185);
+.tHead,
+.emptyTh {
   position: sticky;
   top: 0;
+  background-color: white;
 }
 
+.emptyTh {
+}
 .th {
-  /* -webkit-box-shadow:inset 0px 0px 0px 1px #f00;
-  -moz-box-shadow:inset 0px 0px 0px 1px #f00;
-  box-shadow:inset 0px 0px 1px 1px #f00; */
-  background-color: white;
-  /* position: sticky;
-  top: 0; */
-  border-bottom: 2px solid rgba(0, 0, 255, 0.267);
+  -webkit-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
+  -moz-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
+  box-shadow: inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
   border-right: 1px solid rgba(0, 128, 0, 0.267);;
 }
 
 .tr {
-  border-bottom: 1pt solid black;
 }
 
 .td {
