@@ -98,13 +98,15 @@ export default function Home() {
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
   const assetList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
+  const navList = allData.map((obj, i) => <TableData key={`${i}-${obj.nav}`} data={obj.nav} />)
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
   const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_payments.slice(0, 5)}`} data={obj.dividend_payments} />)
   const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} />)
+  const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} />)
+  const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} />)
 
-  console.log(allData)
   return (
     <div className={styles.container}>
       <Head>
@@ -131,56 +133,66 @@ export default function Home() {
           <hr className={styles.divider}></hr>
         ) : null}
         <div className={styles.grid}>
-          {/* {etfList} */}
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                {tableHeadList}
-              </tr>
-            </thead>
-
-            {/* MAKE A FUCKING CONTEXT PROVIDER FROM HERE, AND CONSUME IT IN EACH ROW */}
-
-            <tbody>
-              <tr>
-                <td>Price $</td>
-                {priceList}
-              </tr>
-              <tr>
-                <td>Turnover</td>
-                {turnoverList}
-              </tr>
-              <tr>
-                <td>Expense Ratio</td>
-                {expenseList}
-              </tr>
-              <tr>
-                <td>Net assets</td>
-                {assetList}
-              </tr>
-              <tr>
-                <td>Beta</td>
-                {betaList}
-              </tr>
-              <tr>
-                <td>Yield</td>
-                {yieldList}
-              </tr>
-              <tr>
-                <td>Sector Allocation</td>
-                {sectorList}
-              </tr>
-              <tr>
-                <td>Dividend History</td>
-                {dividendHistoryList}
-              </tr>
-              <tr>
-                <td>Return History</td>
-                {returnHistoryList}
-              </tr>
-            </tbody>
-          </table>
+          {etfTickers.length ? (
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  {tableHeadList}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Price $</td>
+                  {priceList}
+                </tr>
+                <tr>
+                  <td>Turnover</td>
+                  {turnoverList}
+                </tr>
+                <tr>
+                  <td>Expense Ratio</td>
+                  {expenseList}
+                </tr>
+                <tr>
+                  <td>Net assets</td>
+                  {assetList}
+                </tr>
+                <tr>
+                  <td>NAV</td>
+                  {navList}
+                </tr>
+                <tr>
+                  <td>Beta</td>
+                  {betaList}
+                </tr>
+                <tr>
+                  <td>Yield</td>
+                  {yieldList}
+                </tr>
+                <tr>
+                  <td>Sector Allocation</td>
+                  {sectorList}
+                </tr>
+                <tr>
+                  <td>Top 10 holdings</td>
+                  {top10List}
+                </tr>
+                <tr>
+                  <td>Dividend History</td>
+                  {dividendHistoryList}
+                </tr>
+                <tr>
+                  <td>Return History</td>
+                  {returnHistoryList}
+                </tr>
+                <tr>
+                  <td>YTD Lipper Ranking</td>
+                  {rankingList}
+                </tr>
+              </tbody>
+            </table>
+          ) : null}
         </div>
       </main >
 

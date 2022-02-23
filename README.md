@@ -67,6 +67,15 @@ url: https://www.cnbc.com/quotes/SYMBOL
 
 
 # FEATURES
+
+User stories:
+- [ ] reorder columns (drag and drop them to reorder)
+- [ ] save a comparison table to review later
+- [ ] save tickers in a "To Buy" list.
+- [ ] save tickers in a "To sell" list. 
+- [ ] save a named list of tickers, with percentage distribution for each one ("make my own etf").
+
+Data processing:
 - [ ] calculation: Earnings per share 10 years, calculate the growth rate. 
 - [ ] graphic with the average earnings of last 10 years (EPS or total earnings, tbd). Alpha vantage -> earnings. 
 - [ ] graphic with per share earnings last 10years or last 10 quarters (to determine if it's a growth stock). Alpha vantage EARNINGS 
