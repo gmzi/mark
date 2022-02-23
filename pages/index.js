@@ -192,70 +192,70 @@ export default function Home() {
           {etfTickers.length ? (
             <table className={styles.table}>
               <thead className={styles.tHead}>
-                <tr className={styles.tr}>
-                  <th className={styles.emptyTh}></th>
+                <tr>
+                  <th className={styles.th}></th>
                   {tableHeadList}
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className={styles.td}>Price $</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Price $</td>
                   {priceList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Turnover</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Turnover</td>
                   {turnoverList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Expense Ratio</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Expense Ratio</td>
                   {expenseList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Net assets</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
                   {assetList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>NAV</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
                   {navList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Beta</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
                   {betaList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Yield</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
                   {yieldList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Last Dividend</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Last Dividend</td>
                   {dividendLastList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Sector Allocation</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
                   {sectorList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Top 10 holdings</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Top 10 holdings</td>
                   {top10List}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Dividend History</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Dividend History</td>
                   {dividendHistoryList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Return History</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
                   {returnHistoryList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>YTD Lipper Ranking</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>YTD Lipper Ranking</td>
                   {rankingList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Fund Family</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Fund Family</td>
                   {familyList}
                 </tr>
                 <tr>
-                  <td className={styles.td}>Legal Type</td>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
                   {legalList}
                 </tr>
               </tbody>

@@ -79,32 +79,33 @@
   border-collapse: collapse;
   position: relative;
   margin: .5rem .2rem;
-  padding: 1rem 1rem;
+  padding: .1rem .1rem;
+  font-size: small;
 }
 
-.tHead,
-.emptyTh {
+.tHead {
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: rgba(189, 241, 0, 0.897);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(189, 241, 0, 0.897);
 }
 
-.emptyTh {
-}
 .th {
-  -webkit-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
+  /* -webkit-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
   -moz-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
-  box-shadow: inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
-  border-right: 1px solid rgba(0, 128, 0, 0.267);;
+  box-shadow: inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349); */
 }
 
-.tr {
+.rowTitle {
+  font-size: xx-small;
+  font-weight: bold;
 }
 
 .td {
   border-bottom: 1px solid rgba(0, 0, 255, 0.267);
   border-right: 1px solid rgba(0, 128, 0, 0.267);
-  text-align: left;
+  /* text-align: left; */
 }
 
 .card {
