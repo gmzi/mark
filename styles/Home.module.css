@@ -91,12 +91,6 @@
   border: 1px solid rgba(189, 241, 0, 0.897);
 }
 
-.th {
-  /* -webkit-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
-  -moz-box-shadow:inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349);
-  box-shadow: inset 0px 0px 0px 1px rgba(67, 67, 252, 0.349); */
-}
-
 .rowTitle {
   font-size: xx-small;
   font-weight: bold;
