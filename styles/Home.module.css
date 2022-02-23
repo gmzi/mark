@@ -74,6 +74,41 @@
   max-width: 800px;
 }
 
+.table {
+  border: 1px solid rgb(214, 206, 206);
+  border-collapse: collapse;
+  position: relative;
+  margin: .5rem .2rem;
+  padding: 1rem 1rem;
+}
+
+.tHead {
+  box-shadow: inset 0px 0px 0px 5px rgba(0, 0, 255, 0.185);
+  position: sticky;
+  top: 0;
+}
+
+.th {
+  /* -webkit-box-shadow:inset 0px 0px 0px 1px #f00;
+  -moz-box-shadow:inset 0px 0px 0px 1px #f00;
+  box-shadow:inset 0px 0px 1px 1px #f00; */
+  background-color: white;
+  /* position: sticky;
+  top: 0; */
+  border-bottom: 2px solid rgba(0, 0, 255, 0.267);
+  border-right: 1px solid rgba(0, 128, 0, 0.267);;
+}
+
+.tr {
+  border-bottom: 1pt solid black;
+}
+
+.td {
+  border-bottom: 1px solid rgba(0, 0, 255, 0.267);
+  border-right: 1px solid rgba(0, 128, 0, 0.267);
+  text-align: left;
+}
+
 .card {
   margin: 1rem;
   padding: 1.5rem;
@@ -136,7 +171,6 @@
 
 .span {
   font-weight: bold;
-  font-size: xx-large;
   margin: 0px 0px;
   padding: 0px 0px;
 
@@ -150,7 +184,7 @@
 }
 
 .stockSpan {
-  color: #8E07DE;
+  color: #9007df;
 }
 
 .etfSpan {
