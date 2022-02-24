@@ -43,7 +43,7 @@ export default function Layout({ children }) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span>
+                        <span className={styles.logo}>
                             me
                         </span>
                     </a>

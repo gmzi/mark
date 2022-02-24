@@ -22,7 +22,6 @@
   
   .footer {
     display: flex;
-    width: 10%;
     flex: 1;
     margin: .1rem .1rem;
     padding: .1rem .1rem;
@@ -31,10 +30,7 @@
     align-items: center;
     font-weight: 300;
   }
-  
-  .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: .3;
+
+  .logo {
+      margin: 0rem .2rem;
   }
