@@ -1,10 +1,14 @@
 .container {
-  padding: 0 2rem;
+  padding: .5rem .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  padding: 1rem 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -15,8 +19,9 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  margin: 1rem 1rem;
+  padding: 1rem 1rem;
+  border-top: 1px solid #080808;
   justify-content: center;
   align-items: center;
 }
@@ -71,15 +76,15 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  /* max-width: 800px; */
 }
 
 .table {
   border: 1px solid rgb(214, 206, 206);
   border-collapse: collapse;
   position: relative;
-  margin: .5rem .2rem;
-  padding: .1rem .1rem;
+  font-size: small;
+  /* overflow-x: scroll; */
 }
 
 .tHead {
@@ -87,21 +92,22 @@
   top: 0;
   backdrop-filter: blur(5px);
   background-color: #012057f5;
-  border: 1px solid #bdf100e5;
+}
+
+.th {
+  border: 10px solid white;
 }
 
 .etfSpan {
   /* color: #00ddff; */
   /* color: #3700ff; */
-  color: #f8b542;
+  color: #f8c56c;
 
 }
 
 .stockSpan {
   color: #9007df;
 }
-
-
 
 .headerContainer {
   display: flex;
@@ -111,14 +117,20 @@
 }
 
 .rowTitle {
-  font-size: xx-small;
-  font-weight: bold;
+  /* position: sticky;
+  left: 0; */
+  background-color: whitesmoke;
+  font-size: smaller;
 }
 
+
 .td {
-  border-bottom: 1px solid rgba(0, 0, 255, 0.267);
-  border-right: 1px solid rgba(0, 128, 0, 0.267);
+  border-bottom: 1px solid rgba(0, 0, 255, 0.096);
+  border-right: 1px solid rgba(0, 128, 0, 0.151);
+  /* text-overflow: ellipsis; 
+  word-wrap: break-word; */
 }
+
 
 .card {
   margin: 1rem;
@@ -155,10 +167,13 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+  .table {
+    font-size: x-small;
   }
 }
 
@@ -199,10 +214,12 @@
   box-shadow: 0px 1px 1px rgb(187, 186, 186);
   margin: .1rem 0rem;
   outline: none;
+  color: black;
 }
 
 .headerBtn {
   font-size: xx-small;
+  margin: .1rem .1rem;
 }
 
 .button:hover {

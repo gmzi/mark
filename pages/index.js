@@ -193,7 +193,7 @@ export default function Home() {
             <table className={styles.table}>
               <thead className={styles.tHead}>
                 <tr>
-                  <th></th>
+                  <th className={styles.th}></th>
                   {tableHeadList}
                 </tr>
               </thead>
@@ -263,19 +263,18 @@ export default function Home() {
           ) : null}
         </div>
       </main >
-
-      {/* <footer className={styles.footer}>
+      <footer>
+        ->made by
         <a
           href="https://github.com/gmzi/mcmarket"
           target="_blank"
           rel="noopener noreferrer"
         >
-          made by{' '}
           <span className={styles.logo}>
-            gmzi
+            me
           </span>
         </a>
-      </footer> */}
+      </footer>
     </div >
   )
 }

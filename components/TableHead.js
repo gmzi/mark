@@ -11,7 +11,7 @@ export default function TableHead({ etfTicker, remove }) {
     }
 
     return (
-        <th>
+        <th className={styles.th}>
             <div className={styles.headerContainer}>
                 <button onClick={handleClose} className={`${styles.button} ${styles.headerBtn}`}>X</button>
                 <span className={`${styles.span} ${styles.etfSpan}`}>{ticker}</span>
