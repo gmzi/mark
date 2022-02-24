@@ -114,7 +114,7 @@ export default function Stocks() {
                 <label htmlFor="stockTicker" />
                 <input id="stockTicker" type="text" name="stockTicker" placeholder="enter STOCK ticker" value={formData.stockTicker} onChange={handleChange} />
                 <div>
-                    <input type="submit" className={styles.button}></input>
+                    <button type="submit" className={styles.button}>submit</button>
                     <button onClick={handleClearSearch} className={styles.button}>clear</button>
                 </div>
             </form >
