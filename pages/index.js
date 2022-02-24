@@ -231,20 +231,20 @@ export default function Home() {
                   {dividendLastList}
                 </tr>
                 <tr>
-                  <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
-                  {sectorList}
-                </tr>
-                <tr>
-                  <td className={`${styles.td} ${styles.rowTitle}`}>Top 10 holdings</td>
-                  {top10List}
-                </tr>
-                <tr>
                   <td className={`${styles.td} ${styles.rowTitle}`}>Dividend History</td>
                   {dividendHistoryList}
                 </tr>
                 <tr>
                   <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
                   {returnHistoryList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
+                  {sectorList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Top holdings</td>
+                  {top10List}
                 </tr>
                 <tr>
                   <td className={`${styles.td} ${styles.rowTitle}`}>YTD Lipper Ranking</td>
