@@ -65,14 +65,27 @@ url: https://www.cnbc.com/quotes/SYMBOL
 - net assets
 
 
+# TODOS
+- [ ] add stock api and layout?
+- [ ] add mutual funds api and layout?
+
 
 # FEATURES
 
 User stories:
 - [ ] reorder columns (drag and drop them to reorder)
 - [ ] save a comparison table to review later
-- [ ] save tickers in a "To Buy" list.
+- [ ] save tickers in a "To Buy" list. 
+    - Fields of list:
+        1. List name
+        2. Ticker
+        3. Amount
 - [ ] save tickers in a "To sell" list. 
+    - Fields:
+        1. List name
+        2. Ticker
+        3. Quantity
+        4. Estimate date?
 - [ ] save a named list of tickers, with percentage distribution for each one ("make my own etf").
 
 Data processing:

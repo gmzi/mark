@@ -178,8 +178,8 @@ export default function Home() {
           <label htmlFor="etfTicker" />
           <input id="etfTicker" type="text" name="etfTicker" placeholder="ETF ticker" value={formData.etfTicker} onChange={handleChange} />
           <div>
-            <input type="submit"></input>
-            <button onClick={handleClearSearch}>clear</button>
+            <input type="submit" className={styles.button}></input>
+            <button onClick={handleClearSearch} className={styles.button}>clear</button>
           </div>
         </form >
         <div className={styles.grid}>
@@ -193,7 +193,7 @@ export default function Home() {
             <table className={styles.table}>
               <thead className={styles.tHead}>
                 <tr>
-                  <th className={styles.th}></th>
+                  <th></th>
                   {tableHeadList}
                 </tr>
               </thead>

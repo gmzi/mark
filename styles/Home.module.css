@@ -85,9 +85,29 @@
 .tHead {
   position: sticky;
   top: 0;
-  background-color: rgba(189, 241, 0, 0.897);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(189, 241, 0, 0.897);
+  backdrop-filter: blur(5px);
+  background-color: #012057f5;
+  border: 1px solid #bdf100e5;
+}
+
+.etfSpan {
+  /* color: #00ddff; */
+  /* color: #3700ff; */
+  color: #f8b542;
+
+}
+
+.stockSpan {
+  color: #9007df;
+}
+
+
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .rowTitle {
@@ -98,7 +118,6 @@
 .td {
   border-bottom: 1px solid rgba(0, 0, 255, 0.267);
   border-right: 1px solid rgba(0, 128, 0, 0.267);
-  /* text-align: left; */
 }
 
 .card {
@@ -175,28 +194,17 @@
   justify-content: center;
 }
 
-.stockSpan {
-  color: #9007df;
-}
-
-.etfSpan {
-  color: #07C2DE
-}
-
-.ul {
-  margin: 1rem 0rem;
-  padding: 0rem 1.6rem;
-  list-style: square;
-}
-
-.container button {
-  background-color: inherit;
+.button {
   border-radius: 5px;
-  box-shadow: 0px 2px 2px rgb(187, 186, 186);
+  box-shadow: 0px 1px 1px rgb(187, 186, 186);
   margin: .1rem 0rem;
   outline: none;
 }
 
-.container button:hover {
+.headerBtn {
+  font-size: xx-small;
+}
+
+.button:hover {
   box-shadow: 0px 4px 4px rgb(151, 151, 151);
 }
