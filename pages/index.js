@@ -40,6 +40,7 @@ export default function Home() {
   const [stockTickers, setStockTickers] = useState([])
   const [etfTickers, setEtfTickers] = useState([])
   const [allData, setAllData] = useState([])
+  const [allStockData, setAllStockData] = useState([])
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -68,8 +69,15 @@ export default function Home() {
     setStockTickers(newTickers)
   }
 
+  function addEtf(prevState, newData) {
+    const newTickers = [...prevState, newData]
+    setEtfTickers(newTickers)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    // ---------------------------------------------------------------
+    // STOCKS
     if (formData.stockTicker !== '') {
       if (isDuplicate(stockTickers, formData.stockTicker)) {
         alert('already displayed')
@@ -78,9 +86,23 @@ export default function Home() {
         return;
       }
       addStock(stockTickers, formData.stockTicker)
-      // const newTickers = [...stockTickers, formData.stockTicker]
-      // setStockTickers(newTickers)
+
+      // SEND REQUEST TO API
+      const res = await fetch(`${SERVER}/stock?ticker=${formData.stockTicker}`)
+      if (res.ok) {
+        const result = await res.json();
+        const newData = [...allStockData, result]
+        setAllStockData(newData)
+        setFormData(() => (initialState))
+      } else {
+        alert("that's not found")
+        remove('stock', formData.stockTicker)
+        setFormData(() => (initialState))
+      }
     }
+
+    // ---------------------------------------------------------------
+    // ETFS
     if (formData.etfTicker !== '') {
       if (isDuplicate(etfTickers, formData.etfTicker)) {
         alert('already displayed')
@@ -102,27 +124,34 @@ export default function Home() {
         setAllData(newData)
         setFormData(() => (initialState))
         return
-      }
-      // CHECK IF USER ENTERED A STOCK TICKER IN ETF INPUT, AND FIX IT, 
-      // SAME LOGIC TO BE APPLIED FOR MUTUAL FUNDS AND BONDS.
-      if (!isDuplicate(stockTickers, formData.etfTicker)) {
-        const stockRes = await fetch(`${SERVER}/stock?ticker=${formData.etfTicker}`)
-        if (stockRes.ok) {
-          alert('added to stock')
-          addStock(stockTickers, formData.etfTicker)
-          remove('etf', formData.etfTicker)
-          setFormData(() => (initialState))
-          return;
-        }
-        alert('thats not found')
+      } else {
+        alert("that's not found")
         remove('etf', formData.etfTicker)
         setFormData(() => (initialState))
-        return;
       }
-      alert('already in stock list')
-      remove('etf', formData.etfTicker)
-      setFormData(() => (initialState))
-      return;
+      // TODO:
+      // GUIDE USER INPUT THROGH SUGGESTIONS instead of this deprecated method:
+
+      // CHECK IF USER ENTERED A STOCK TICKER IN ETF INPUT, AND FIX IT, 
+      // SAME LOGIC TO BE APPLIED FOR MUTUAL FUNDS AND BONDS.
+      // if (!isDuplicate(stockTickers, formData.etfTicker)) {
+      //   const stockRes = await fetch(`${SERVER}/stock?ticker=${formData.etfTicker}`)
+      //   if (stockRes.ok) {
+      //     alert('added to stock')
+      //     addStock(stockTickers, formData.etfTicker)
+      //     remove('etf', formData.etfTicker)
+      //     setFormData(() => (initialState))
+      //     return;
+      //   }
+      //   alert('thats not found')
+      //   remove('etf', formData.etfTicker)
+      //   setFormData(() => (initialState))
+      //   return;
+      // }
+      // alert('already in stock list')
+      // remove('etf', formData.etfTicker)
+      // setFormData(() => (initialState))
+      // return;
     }
   }
 
@@ -130,6 +159,8 @@ export default function Home() {
     if (list === 'stock') {
       const removedArr = [...stockTickers].filter((s) => s !== ticker)
       setStockTickers(removedArr)
+      const removedData = [...allStockData].filter((obj) => obj.symbol !== ticker)
+      setAllStockData(removedData)
       return;
     }
     if (list === 'etf') {
@@ -143,9 +174,21 @@ export default function Home() {
   const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
   // const etfList = etfTickers.map((e, i) => <EtfLinkList key={`${i}-${e}`} etfTicker={e} remove={remove} />)
   // const etfList = etfTickers.map((e, i) => <EtfTable key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  const tableHeadListStock = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} stockTicker={e} remove={remove} />)
+  const priceListStock = allStockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const epsList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)
+  const peList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.p_e}`} data={obj.p_e} />)
+  const mktCapList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.market_cap}`} data={obj.market_cap} />)
+  const betaListStock = allStockData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
+  const dividendListStock = allStockData.map((obj, i) => <TableData key={`${i}-${obj.dividend}`} data={obj.dividend} />)
+  const dividendYieldListStock = allStockData.map((obj, i) => <TableData key={`${i}-${obj.dividend_yield}`} data={obj.dividend_yield} />)
+  const weekHighList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.week_high}`} data={obj.week_high} />)
+  const weekLowList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.week_low}`} data={obj.week_low} />)
+
+
   const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
-  // const turnoverList = etfTickers.map((e, i) => <TurnoverData key={`${i}-${e}`} etfTicker={e} />)
-  // const expenseList = etfTickers.map((e, i) => <ExpenseData key={`${i}-${e}`} etfTicker={e} />)
+  // const turnoverList = etfTickers.map((e, i) => <TurnoverData key={`${i}-${e}`} ticker={e} />)
+  // const expenseList = etfTickers.map((e, i) => <ExpenseData key={`${i}-${e}`} ticker={e} />)
   const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
@@ -182,16 +225,67 @@ export default function Home() {
             <button onClick={handleClearSearch} className={styles.button}>clear</button>
           </div>
         </form >
+
         <div className={styles.grid}>
-          {stockList}
+          {/* {stockList} */}
+          {stockTickers.length ? (
+            <table className={styles.table}>
+              <thead className={`${styles.tHead} ${styles.stockHead}`}>
+                <tr>
+                  <th className={styles.th}></th>
+                  {tableHeadListStock}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Price $</td>
+                  {priceListStock}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>EPS(TTM)</td>
+                  {epsList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>P/E(TTM)</td>
+                  {peList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Dividend</td>
+                  {dividendListStock}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Dividend Yield</td>
+                  {dividendYieldListStock}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>52 W High</td>
+                  {weekHighList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>52 W Low</td>
+                  {weekLowList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Market Cap</td>
+                  {mktCapList}
+                </tr>
+                <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
+                  {betaListStock}
+                </tr>
+              </tbody>
+            </table>
+          ) : null}
         </div>
+
         {stockList.length && etfTickers.length ? (
           <hr className={styles.divider}></hr>
         ) : null}
+
         <div className={styles.grid}>
           {etfTickers.length ? (
             <table className={styles.table}>
-              <thead className={styles.tHead}>
+              <thead className={`${styles.tHead} ${styles.etfHead}`}>
                 <tr>
                   <th className={styles.th}></th>
                   {tableHeadList}
@@ -264,7 +358,7 @@ export default function Home() {
         </div>
       </main >
       <footer>
-        ->made by
+        made by
         <a
           href="https://github.com/gmzi/mcmarket"
           target="_blank"
