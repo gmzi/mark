@@ -168,7 +168,7 @@ export default function Home() {
         <label htmlFor="etfTicker" />
         <input id="etfTicker" type="text" name="etfTicker" placeholder="enter ETF ticker" value={formData.etfTicker} onChange={handleChange} />
         <div>
-          <input type="submit" className={styles.button}></input>
+          <button type="submit" className={styles.button}>submit</button>
           <button onClick={handleClearSearch} className={styles.button}>clear</button>
         </div>
       </form >
