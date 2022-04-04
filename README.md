@@ -1,17 +1,22 @@
-# FINANCIAL METRICS 
+# TODOS:
+
+- [] show "fetching data" while scraping, looks awfull that silent moment before data is displayed.
+
+# FINANCIAL METRICS
 
 ## stock screening
 
 url: https://www.cnbc.com/quotes/SYMBOL
 
 - financials:
-    - balance sheet (https://www.cnbc.com/quotes/JPM?tab=financials#timePeriod)
-    - income statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=incomeStatement)
-        - gross income (total earnings before costs and taxes)
-        - net income (sales minus costs of operation, materials and taxes)
-    - cash flow statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=cashFlowStatement)
 
-    - sec fillings (https://apps.cnbc.com/view.asp?symbol=MELI&uid=stocks/sec)
+  - balance sheet (https://www.cnbc.com/quotes/JPM?tab=financials#timePeriod)
+  - income statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=incomeStatement)
+    - gross income (total earnings before costs and taxes)
+    - net income (sales minus costs of operation, materials and taxes)
+  - cash flow statement (https://apps.cnbc.com/view.asp?symbol=JPM&uid=stocks/financials&view=cashFlowStatement)
+
+  - sec fillings (https://apps.cnbc.com/view.asp?symbol=MELI&uid=stocks/sec)
 
 - Earnings Per Share (EPS)
 - Average Per share earnings last 10 yrs. (https://www.cnbc.com/quotes/JPM?tab=earnings)
@@ -21,7 +26,7 @@ url: https://www.cnbc.com/quotes/SYMBOL
 
 - Dividend payments (last 10 years, quarterly). Check if dividends are continuous, and their progress. (trailing 5Y on cnbc)
 
-- Market capitalization (total stock value). More than 10B is a "large" company. 
+- Market capitalization (total stock value). More than 10B is a "large" company.
 
 - Target price (by analysts)
 
@@ -30,13 +35,13 @@ url: https://www.cnbc.com/quotes/SYMBOL
 - Alpha
 
 ## graham 4 rules to stock selection:
-1. adequate though not excessive diversification in portfolio. 
-2. company large, respected and conservatively financed. ("common stock at book value represents at least half of the total capitalization, including all bank debt", graham, p.122)
-3. long record of continuous dividend payments. 
-4. price limits:
-    - max price: Average EPS of last ~7 years X 25. 
-    - Min price: Average EPS of last 12 months X 20. 
 
+1. adequate though not excessive diversification in portfolio.
+2. company large, respected and conservatively financed. ("common stock at book value represents at least half of the total capitalization, including all bank debt", graham, p.122)
+3. long record of continuous dividend payments.
+4. price limits:
+   - max price: Average EPS of last ~7 years X 25.
+   - Min price: Average EPS of last 12 months X 20.
 
 ## ETFs
 
@@ -44,7 +49,7 @@ url: https://www.cnbc.com/quotes/SYMBOL
 
 - [dividend payments last 16Y](https://finance.yahoo.com/quote/VIG/history?period1=1146528000&period2=1642723200&interval=capitalGain%7Cdiv%7Csplit&filter=div&frequency=1mo&includeAdjustedClose=true)
 
-- [total returns last 20 years](https://finance.yahoo.com/quote/VIG/performance?p=VIG) 
+- [total returns last 20 years](https://finance.yahoo.com/quote/VIG/performance?p=VIG)
 
 - [turnover rate](https://finance.yahoo.com/quote/ESGV/profile?p=VIG)
 
@@ -64,49 +69,44 @@ url: https://www.cnbc.com/quotes/SYMBOL
 
 - net assets
 
-
 # TODOS
+
 - [ ] add stock api and layout?
 - [ ] add mutual funds api and layout?
-
 
 # FEATURES
 
 User stories:
+
 - [ ] reorder columns (drag and drop them to reorder)
 - [ ] save a comparison table to review later
-- [ ] save tickers in a "To Buy" list. 
-    - Fields of list:
-        1. List name
-        2. Ticker
-        3. Amount
-- [ ] save tickers in a "To sell" list. 
-    - Fields:
-        1. List name
-        2. Ticker
-        3. Quantity
-        4. Estimate date?
+- [ ] save tickers in a "To Buy" list.
+  - Fields of list:
+    1. List name
+    2. Ticker
+    3. Amount
+- [ ] save tickers in a "To sell" list.
+  - Fields:
+    1. List name
+    2. Ticker
+    3. Quantity
+    4. Estimate date?
 - [ ] save a named list of tickers, with percentage distribution for each one ("make my own etf").
 
 Data processing:
-- [ ] calculation: Earnings per share 10 years, calculate the growth rate. 
-- [ ] graphic with the average earnings of last 10 years (EPS or total earnings, tbd). Alpha vantage -> earnings. 
-- [ ] graphic with per share earnings last 10years or last 10 quarters (to determine if it's a growth stock). Alpha vantage EARNINGS 
+
+- [ ] calculation: Earnings per share 10 years, calculate the growth rate.
+- [ ] graphic with the average earnings of last 10 years (EPS or total earnings, tbd). Alpha vantage -> earnings.
+- [ ] graphic with per share earnings last 10years or last 10 quarters (to determine if it's a growth stock). Alpha vantage EARNINGS
 - [ ] graphic with dividends quarterly last 10 years.
-
-
-
 
 docs: https://pandas-datareader.readthedocs.io/en/latest/remote_data.html#remote-data-alphavantage
 
-
-
-------------------
+---
 
 # API
 
 [alphavantage](https://www.alphavantage.co)
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
