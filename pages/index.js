@@ -143,16 +143,16 @@ export default function Home() {
   const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
-  const assetList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
+  const netAssetsList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
   const navList = allData.map((obj, i) => <TableData key={`${i}-${obj.nav}`} data={obj.nav} />)
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
   const dividendLastList = allData.map((obj, i) => <TableData key={`${i}-${obj.dividend_last}`} data={obj.dividend_last} />)
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
-  const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_history.slice(0, 5)}`} data={obj.dividend_history} />)
-  const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} />)
-  const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} />)
-  const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} />)
+  const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_history.slice(0, 5)}`} data={obj.dividend_history} topAlign={true} />)
+  const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} topAlign={true} />)
+  const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} topAlign={false} />)
+  const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
   const familyList = allData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const legalList = allData.map((obj, i) => <TableData key={`${i}-${obj.legal_type}`} data={obj.legal_type} />)
 
@@ -187,20 +187,20 @@ export default function Home() {
                 {priceList}
               </tr>
               <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
+                {navList}
+              </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
+                {netAssetsList}
+              </tr>
+              <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Turnover</td>
                 {turnoverList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Expense Ratio</td>
                 {expenseList}
-              </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
-                {assetList}
-              </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
-                {navList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>

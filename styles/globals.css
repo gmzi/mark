@@ -12,7 +12,9 @@ a {
   line-height: 1.5rem;
 }
 
-a:link, a:visited, a:focus {
+a:link,
+a:visited,
+a:focus {
   color: blue;
 }
 
@@ -25,5 +27,5 @@ a:hover {
 }
 
 ul {
-  list-style: "\2606";
+  list-style: '\2606';
 }

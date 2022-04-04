@@ -40,7 +40,6 @@
 .etfSpan {
   /* color: #00ddff; */
   color: #f8c56c;
-
 }
 
 .stockSpan {
@@ -61,12 +60,15 @@
   font-size: smaller;
 }
 
-
 .td {
   border-bottom: 1px solid rgba(0, 0, 255, 0.096);
   border-right: 1px solid rgba(0, 128, 0, 0.151);
   /* text-overflow: ellipsis; 
   word-wrap: break-word; */
+}
+
+.topAlign {
+  vertical-align: top;
 }
 
 @media (max-width: 700px) {
@@ -82,14 +84,14 @@
 .form {
   display: flex;
   flex-direction: column;
- }
- 
- .form input[type=text] {
-   margin: .2rem 0rem;
-   padding: .2rem 1.5rem;
-   border-radius: 5px;
-   font-size: large;
- }
+}
+
+.form input[type='text'] {
+  margin: 0.2rem 0rem;
+  padding: 0.2rem 1.5rem;
+  border-radius: 5px;
+  font-size: large;
+}
 
 .container {
   display: flex;
@@ -99,7 +101,6 @@
   font-weight: bold;
   margin: 0px 0px;
   padding: 0px 0px;
-
 }
 
 .tickerAndBtn {
@@ -112,7 +113,7 @@
 .button {
   border-radius: 5px;
   box-shadow: 0px 1px 1px rgb(187, 186, 186);
-  margin: .1rem 0rem;
+  margin: 0.1rem 0rem;
   outline: none;
   color: black;
   background-color: white;
@@ -120,7 +121,7 @@
 
 .headerBtn {
   font-size: xx-small;
-  margin: .1rem .1rem;
+  margin: 0.1rem 0.1rem;
 }
 
 .button:hover {
