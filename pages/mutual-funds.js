@@ -13,9 +13,9 @@ import NestedTable from '../components/NestedTable';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
-export default function Home() {
+export default function MutualFunds() {
   const initialState = {
-    etfTicker: '',
+    mutualFundTicker: '',
   }
 
   const dataTemplate = {
@@ -38,7 +38,7 @@ export default function Home() {
   }
 
   const [formData, setFormData] = useState(initialState)
-  const [etfTickers, setEtfTickers] = useState([])
+  const [mutualFundsTickers, setMutualFundsTickers] = useState([])
   const [allData, setAllData] = useState([])
 
   const handleChange = async (e) => {
@@ -63,27 +63,27 @@ export default function Home() {
     return;
   }
 
-  function addEtf(prevState, newData) {
-    const newTickers = [...prevState, newData]
-    setEtfTickers(newTickers)
-  }
+//   function addEtf(prevState, newData) {
+//     const newTickers = [...prevState, newData]
+//     setMutualFundsTickers(newTickers)
+//   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (formData.etfTicker !== '') {
-      if (isDuplicate(etfTickers, formData.etfTicker)) {
+    if (formData.mutualFundTicker !== '') {
+      if (isDuplicate(mutualFundsTickers, formData.mutualFundTicker)) {
         alert('already displayed')
-        const newFormState = { stockTicker: formData.stockTicker, etfTicker: '' }
+        const newFormState = { stockTicker: formData.stockTicker, mutualFundTicker: '' }
         setFormData(() => newFormState)
         return;
       }
-      const newTickers = [...etfTickers, formData.etfTicker]
+      const newTickers = [...mutualFundsTickers, formData.mutualFundTicker]
 
       // RENDER NEW TICKER IN LIST
-      setEtfTickers(newTickers)
+      setMutualFundsTickers(newTickers)
 
       // SEND REQUEST TO API
-      const res = await fetch(`${SERVER}/etf/${formData.etfTicker}`)
+      const res = await fetch(`${SERVER}/mutual_fund/${formData.mutualFundTicker}`)
       if (res.ok) {
         const result = await res.json();
         dataTemplate = { ...result }
@@ -93,32 +93,9 @@ export default function Home() {
         return
       } else {
         alert("that's not found")
-        remove('etf', formData.etfTicker)
+        remove('mutualFund', formData.mutualFundTicker)
         setFormData(() => (initialState))
       }
-      // TODO:
-      // GUIDE USER INPUT THROGH SUGGESTIONS instead of this deprecated method:
-
-      // CHECK IF USER ENTERED A STOCK TICKER IN ETF INPUT, AND FIX IT, 
-      // SAME LOGIC TO BE APPLIED FOR MUTUAL FUNDS AND BONDS.
-      // if (!isDuplicate(stockTickers, formData.etfTicker)) {
-      //   const stockRes = await fetch(`${SERVER}/stock?ticker=${formData.etfTicker}`)
-      //   if (stockRes.ok) {
-      //     alert('added to stock')
-      //     addStock(stockTickers, formData.etfTicker)
-      //     remove('etf', formData.etfTicker)
-      //     setFormData(() => (initialState))
-      //     return;
-      //   }
-      //   alert('thats not found')
-      //   remove('etf', formData.etfTicker)
-      //   setFormData(() => (initialState))
-      //   return;
-      // }
-      // alert('already in stock list')
-      // remove('etf', formData.etfTicker)
-      // setFormData(() => (initialState))
-      // return;
     }
   }
 
@@ -131,30 +108,46 @@ export default function Home() {
       return;
     }
     if (list === 'etf') {
-      const removedArr = [...etfTickers].filter((e) => e !== ticker)
-      setEtfTickers(removedArr)
+      const removedArr = [...mutualFundsTickers].filter((e) => e !== ticker)
+      setMutualFundsTickers(removedArr)
+      const removedData = [...allData].filter((obj) => obj.symbol !== ticker)
+      setAllData(removedData)
+      return;
+    }
+    if (list === 'mutualFund') {
+      const removedArr = [...mutualFundsTickers].filter((e) => e !== ticker)
+      setMutualFundsTickers(removedArr)
       const removedData = [...allData].filter((obj) => obj.symbol !== ticker)
       setAllData(removedData)
       return;
     }
   }
 
-  const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  const tableHeadList = mutualFundsTickers.map((e, i) => <TableHead key={`${i}-${e}`} mutualFundTicker={e} remove={remove} />)
   const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
   const netAssetsList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
-  const navList = allData.map((obj, i) => <TableData key={`${i}-${obj.nav}`} data={obj.nav} />)
+
+
+  const alphaList = allData.map((obj, i) => <TableData key={`${i}-${obj.alpha}`} data={obj.alpha} />)
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
+  const standardDevidationList = allData.map((obj, i) => <TableData key={`${i}-${obj.standard_deviation}`} data={obj.standard_deviation} />)
+  const rSquaredList = allData.map((obj, i) => <TableData key={`${i}-${obj.r_squared}`} data={obj.r_squared} />)
+
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
-  const dividendLastList = allData.map((obj, i) => <TableData key={`${i}-${obj.dividend_last}`} data={obj.dividend_last} />)
+
+//   const distributionsList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.distributions.slice(0, 5)}`} data={obj.distributions} />)
+  const incomeDividendList = allData.map((obj, i) => <TableData key={`${i}-${obj.income_dividend}`} data={obj.income_dividend} />)
+
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
-  const dividendHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.dividend_history.slice(0, 5)}`} data={obj.dividend_history} topAlign={true} />)
+
   const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} topAlign={true} />)
   const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} topAlign={false} />)
   const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
   const familyList = allData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
-  const legalList = allData.map((obj, i) => <TableData key={`${i}-${obj.legal_type}`} data={obj.legal_type} />)
+  const categoryList = allData.map((obj, i) => <TableData key={`${i}-${obj.category.slice(0, 5)}`} data={obj.category} />)
+  const policyList = allData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} />)
 
 
   return (
@@ -163,17 +156,17 @@ export default function Home() {
         <title>Mark/etfs</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
-      <h1 className={styles.h1}>Mark/etfs</h1>
+      <h1 className={styles.h1}>/mutual funds/</h1>
       <form className={styles.form} onChange={handleChange} onSubmit={handleSubmit}>
-        <label htmlFor="etfTicker" />
-        <input id="etfTicker" type="text" name="etfTicker" placeholder="enter ETF ticker" value={formData.etfTicker} onChange={handleChange} />
+        <label htmlFor="mutualFundTicker" />
+        <input id="mutualFundTicker" type="text" name="mutualFundTicker" placeholder="enter MUTUAL FUND ticker" value={formData.mutualFundTicker} onChange={handleChange} />
         <div>
           <button type="submit" className={styles.button}>submit</button>
           <button onClick={handleClearSearch} className={styles.button}>clear</button>
         </div>
       </form >
       <div className={styles.grid}>
-        {etfTickers.length ? (
+        {mutualFundsTickers.length ? (
           <table className={styles.table}>
             <thead className={`${styles.tHead} ${styles.etfHead}`}>
               <tr>
@@ -187,10 +180,6 @@ export default function Home() {
                 {priceList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
-                {navList}
-              </tr>
-              <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
                 {netAssetsList}
               </tr>
@@ -201,26 +190,39 @@ export default function Home() {
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Expense Ratio</td>
                 {expenseList}
+               </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
+                {yieldList}
+              </tr>
+
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Income Dividend</td>
+                {incomeDividendList}
+              </tr>
+              {/* <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Distribution History</td>
+                {distributionsHistoryList}
+              </tr> */}
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
+                {returnHistoryList}
+              </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Alpha</td>
+                {alphaList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
                 {betaList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
-                {yieldList}
+                <td className={`${styles.td} ${styles.rowTitle}`}>S. Deviation</td>
+                {standardDevidationList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Last Dividend</td>
-                {dividendLastList}
-              </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Dividend History</td>
-                {dividendHistoryList}
-              </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
-                {returnHistoryList}
+                <td className={`${styles.td} ${styles.rowTitle}`}>R. Squared</td>
+                {rSquaredList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
@@ -239,8 +241,12 @@ export default function Home() {
                 {familyList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
-                {legalList}
+                <td className={`${styles.td} ${styles.rowTitle}`}>Category</td>
+                {categoryList}
+              </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
+                {policyList}
               </tr>
             </tbody>
           </table>

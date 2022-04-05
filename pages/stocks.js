@@ -120,6 +120,10 @@ export default function Stocks() {
             </form >
 
             <div className={styles.grid}>
+                {stockList}
+            </div>
+
+            <div className={styles.grid}>
                 {/* {stockList} */}
                 {stockTickers.length ? (
                     <table className={styles.table}>

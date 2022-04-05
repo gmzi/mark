@@ -2,9 +2,17 @@ import React from 'react';
 import Source from '../helpers/source';
 import styles from '../styles/Home.module.css'
 
-export default function TableHead({ etfTicker, stockTicker, remove }) {
+export default function TableHead({ etfTicker, stockTicker, mutualFundTicker, remove }) {
 
-    const ticker = etfTicker ? etfTicker.toUpperCase() : stockTicker.toUpperCase();
+    let ticker; 
+
+    if (etfTicker) {
+        ticker = etfTicker.toUpperCase();
+    } else if (stockTicker) {
+        ticker = stockTicker.toUpperCase();
+    } else if (mutualFundTicker) {
+        ticker = mutualFundTicker.toUpperCase();
+    }
 
     const handleClose = () => {
         etfTicker ? remove('etf', etfTicker) : remove('stock', stockTicker)

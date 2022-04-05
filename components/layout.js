@@ -30,6 +30,9 @@ export default function Layout({ children }) {
                         <Link href="/">
                             <a>etfs</a>
                         </Link>
+                        <Link href="/mutual-funds">
+                            <a>mutual funds</a>
+                        </Link>
                         <Link href="/stocks">
                             <a>stocks</a>
                         </Link>

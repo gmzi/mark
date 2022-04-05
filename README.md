@@ -1,6 +1,8 @@
 # TODOS:
 
 - [] show "fetching data" while scraping, looks awfull that silent moment before data is displayed.
+- [] display link to data source after table
+- [] on sucessful requests to server, save user inputed ticker to database, and reuse that input for suggestions.
 
 # FINANCIAL METRICS
 
