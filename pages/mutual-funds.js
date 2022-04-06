@@ -126,41 +126,37 @@ export default function MutualFunds() {
   }
 
   const tableHeadList = mutualFundsTickers.map((e, i) => <TableHead key={`${i}-${e}`} mutualFundTicker={e} remove={remove} />)
+
   const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const weekRange52List = allData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const year5List = allData.map((obj, i) => <TableData key={`${i}-${obj.year_5}`} data={obj.year_5} />)
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
   const netAssetsList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
-
-
   const alphaList = allData.map((obj, i) => <TableData key={`${i}-${obj.alpha}`} data={obj.alpha} />)
   const betaList = allData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const standardDevidationList = allData.map((obj, i) => <TableData key={`${i}-${obj.standard_deviation}`} data={obj.standard_deviation} />)
   const rSquaredList = allData.map((obj, i) => <TableData key={`${i}-${obj.r_squared}`} data={obj.r_squared} />)
-
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
   const incomeDividendList = allData.map((obj, i) => <TableData key={`${i}-${obj.income_dividend}`} data={obj.income_dividend} />)
-
-  const incomeHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.income_history.slice(0, 5)}`} data={obj.income_history} topAlign={true} />)
-  const capitalGainsHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.capital_gains_history.slice(0, 5)}`} data={obj.capital_gains_history} topAlign={true} />)
-
   const weekAvgReturn52List = allData.map((obj, i) => <TableData key={`${i}-${obj.week_avg_return_52}`} data={obj.week_avg_return_52} />)
-
-  const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
-
-  const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} topAlign={true} />)
-  const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} topAlign={false} />)
-  const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
   const familyList = allData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const categoryList = allData.map((obj, i) => <TableData key={`${i}-${obj.category.slice(0, 5)}`} data={obj.category} />)
   const policyList = allData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} />)
+
+  const incomeHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.income_history.slice(0, 5)}`} data={obj.income_history} topAlign={true} />)
+  const capitalGainsHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.capital_gains_history.slice(0, 5)}`} data={obj.capital_gains_history} topAlign={true} />)
+  const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
+  const returnHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.return_history.slice(0, 5)}`} data={obj.return_history} topAlign={true} />)
+  const top10List = allData.map((obj, i) => <NestedTable key={`${i}-${obj.holdings_10.slice(0, 5)}`} data={obj.holdings_10} topAlign={false} />)
+  const rankingList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
+  
 
 
   return (
     <Layout>
       <Head>
-        <title>Mark/etfs</title>
+        <title>Mark/mutual funds</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
       <h1 className={styles.h1}>/mutual funds/</h1>
