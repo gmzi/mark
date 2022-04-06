@@ -40,6 +40,10 @@ export default function Home() {
   const [formData, setFormData] = useState(initialState)
   const [etfTickers, setEtfTickers] = useState([])
   const [allData, setAllData] = useState([])
+  const [loading, setLoading] = useState()
+
+  // useEffect(() => {
+  // }, [loading])
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -82,6 +86,7 @@ export default function Home() {
       // RENDER NEW TICKER IN LIST
       setEtfTickers(newTickers)
 
+      setLoading(true)
       // SEND REQUEST TO API
       const res = await fetch(`${SERVER}/etf/${formData.etfTicker}`)
       if (res.ok) {
@@ -90,35 +95,12 @@ export default function Home() {
         const newData = [...allData, dataTemplate]
         setAllData(newData)
         setFormData(() => (initialState))
-        return
       } else {
         alert("that's not found")
         remove('etf', formData.etfTicker)
         setFormData(() => (initialState))
       }
-      // TODO:
-      // GUIDE USER INPUT THROGH SUGGESTIONS instead of this deprecated method:
-
-      // CHECK IF USER ENTERED A STOCK TICKER IN ETF INPUT, AND FIX IT, 
-      // SAME LOGIC TO BE APPLIED FOR MUTUAL FUNDS AND BONDS.
-      // if (!isDuplicate(stockTickers, formData.etfTicker)) {
-      //   const stockRes = await fetch(`${SERVER}/stock?ticker=${formData.etfTicker}`)
-      //   if (stockRes.ok) {
-      //     alert('added to stock')
-      //     addStock(stockTickers, formData.etfTicker)
-      //     remove('etf', formData.etfTicker)
-      //     setFormData(() => (initialState))
-      //     return;
-      //   }
-      //   alert('thats not found')
-      //   remove('etf', formData.etfTicker)
-      //   setFormData(() => (initialState))
-      //   return;
-      // }
-      // alert('already in stock list')
-      // remove('etf', formData.etfTicker)
-      // setFormData(() => (initialState))
-      // return;
+      setLoading(false)
     }
   }
 
@@ -163,7 +145,7 @@ export default function Home() {
         <title>Mark/etfs</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
-      <h1 className={styles.h1}>Mark/etfs</h1>
+      <h1 className={styles.h1}>/etfs/</h1>
       <form className={styles.form} onChange={handleChange} onSubmit={handleSubmit}>
         <label htmlFor="etfTicker" />
         <input id="etfTicker" type="text" name="etfTicker" placeholder="enter ETF ticker" value={formData.etfTicker} onChange={handleChange} />
@@ -172,8 +154,13 @@ export default function Home() {
           <button onClick={handleClearSearch} className={styles.button}>clear</button>
         </div>
       </form >
-      <div className={styles.grid}>
         {etfTickers.length ? (
+          <>
+          {loading &&
+          <div>
+            <p>Fetching data...</p>
+          </div>}
+      <div className={styles.grid}>
           <table className={styles.table}>
             <thead className={`${styles.tHead} ${styles.etfHead}`}>
               <tr>
@@ -244,8 +231,12 @@ export default function Home() {
               </tr>
             </tbody>
           </table>
-        ) : null}
       </div>
+      <div>
+        <span>data scraped from <a href="https://marketwatch.com" target="_blank" rel='noreferrer'>MarketWatch</a> and <a href="https://finance.yahoo.com" target="_blank" rel='noreferrer'>Yahoo Finance</a></span>
+      </div>
+      </>
+        ) : null}
     </Layout>
   )
 }

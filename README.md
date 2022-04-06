@@ -1,8 +1,9 @@
 # TODOS:
 
-- [] show "fetching data" while scraping, looks awfull that silent moment before data is displayed.
-- [] display link to data source after table
-- [] on sucessful requests to server, save user inputed ticker to database, and reuse that input for suggestions.
+- [] find a ticker suggestions api available to use.
+- [] add persistence to tables (so when you move accross pages the data is still there when you come back)
+- [x] show "fetching data" while scraping, looks awfull that silent moment before data is displayed.
+- [x] display link to data source after table
 
 # FINANCIAL METRICS
 

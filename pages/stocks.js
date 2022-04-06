@@ -109,7 +109,7 @@ export default function Stocks() {
                 <title>Mark/stocks</title>
                 <link rel="icon" href="/favicon4.ico" />
             </Head>
-            <h1 className={styles.h1}>Mark/stocks</h1>
+            <h1 className={styles.h1}>/stocks/</h1>
             <form className={styles.form} onChange={handleChange} onSubmit={handleSubmit}>
                 <label htmlFor="stockTicker" />
                 <input id="stockTicker" type="text" name="stockTicker" placeholder="enter STOCK ticker" value={formData.stockTicker} onChange={handleChange} />
@@ -119,13 +119,10 @@ export default function Stocks() {
                 </div>
             </form >
 
-            <div className={styles.grid}>
-                {stockList}
-            </div>
-
-            <div className={styles.grid}>
                 {/* {stockList} */}
-                {stockTickers.length ? (
+            {stockTickers.length ? (
+                <>
+            <div className={styles.grid}>
                     <table className={styles.table}>
                         <thead className={`${styles.tHead} ${styles.stockHead}`}>
                             <tr>
@@ -172,8 +169,12 @@ export default function Stocks() {
                             </tr>
                         </tbody>
                     </table>
-                ) : null}
             </div>
+            <div>
+                <span>data scraped from <a href="https://marketwatch.com" target="_blank" rel='noreferrer'>MarketWatch</a> and <a href="https://finance.yahoo.com" target="_blank" rel='noreferrer'>Yahoo Finance</a></span>
+            </div>
+            </>
+                ) : null}
         </Layout>
     )
 }

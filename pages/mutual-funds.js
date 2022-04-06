@@ -40,6 +40,7 @@ export default function MutualFunds() {
   const [formData, setFormData] = useState(initialState)
   const [mutualFundsTickers, setMutualFundsTickers] = useState([])
   const [allData, setAllData] = useState([])
+  const [loading, setLoading] = useState()
 
   const handleChange = async (e) => {
     const { name, value } = e.target;
@@ -82,6 +83,7 @@ export default function MutualFunds() {
       // RENDER NEW TICKER IN LIST
       setMutualFundsTickers(newTickers)
 
+      setLoading(true)
       // SEND REQUEST TO API
       const res = await fetch(`${SERVER}/mutual_fund/${formData.mutualFundTicker}`)
       if (res.ok) {
@@ -90,12 +92,12 @@ export default function MutualFunds() {
         const newData = [...allData, dataTemplate]
         setAllData(newData)
         setFormData(() => (initialState))
-        return
       } else {
         alert("that's not found")
         remove('mutualFund', formData.mutualFundTicker)
         setFormData(() => (initialState))
       }
+        setLoading(false)
     }
   }
 
@@ -170,8 +172,14 @@ export default function MutualFunds() {
           <button onClick={handleClearSearch} className={styles.button}>clear</button>
         </div>
       </form >
-      <div className={styles.grid}>
         {mutualFundsTickers.length ? (
+            <>
+             {loading &&
+                <div>
+                    <p>Fetching data...</p>
+                </div>
+            }
+      <div className={styles.grid}>
           <table className={styles.table}>
             <thead className={`${styles.tHead} ${styles.etfHead}`}>
               <tr>
@@ -274,8 +282,12 @@ export default function MutualFunds() {
               </tr>
             </tbody>
           </table>
-        ) : null}
       </div>
+      <div>
+        <span>data scraped from <a href="https://marketwatch.com" target="_blank" rel='noreferrer'>MarketWatch</a> and <a href="https://finance.yahoo.com" target="_blank" rel='noreferrer'>Yahoo Finance</a></span>
+      </div>
+      </>
+        ) : null}
     </Layout>
   )
 }
