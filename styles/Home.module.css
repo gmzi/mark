@@ -16,7 +16,8 @@
 .table {
   border: 1px solid rgb(214, 206, 206);
   border-collapse: collapse;
-  position: relative;
+  /* position: relative; */
+  width: 100%;
 }
 
 .tHead {
@@ -35,6 +36,23 @@
 
 .th {
   border: 8px solid white;
+}
+
+.td {
+  border-bottom: 1px solid rgba(0, 0, 255, 0.096);
+  border-right: 1px solid rgba(0, 128, 0, 0.151);
+  padding: 0.5rem;
+  line-height: 1.1rem;
+}
+
+.td a {
+  line-height: normal;
+}
+
+.isParagraph p {
+  width: 14rem;
+  padding: 0px 0px;
+  margin: 0px 0px;
 }
 
 .etfSpan {
@@ -56,13 +74,8 @@
 .rowTitle {
   /* position: sticky;
   left: 0; */
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   font-size: smaller;
-}
-
-.td {
-  border-bottom: 1px solid rgba(0, 0, 255, 0.096);
-  border-right: 1px solid rgba(0, 128, 0, 0.151);
 }
 
 .topAlign {
