@@ -125,6 +125,8 @@ export default function MutualFunds() {
 
   const tableHeadList = mutualFundsTickers.map((e, i) => <TableHead key={`${i}-${e}`} mutualFundTicker={e} remove={remove} />)
   const priceList = allData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const weekRange52List = allData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
+  const year5List = allData.map((obj, i) => <TableData key={`${i}-${obj.year_5}`} data={obj.year_5} />)
   const turnoverList = allData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = allData.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
   const netAssetsList = allData.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
@@ -136,9 +138,12 @@ export default function MutualFunds() {
   const rSquaredList = allData.map((obj, i) => <TableData key={`${i}-${obj.r_squared}`} data={obj.r_squared} />)
 
   const yieldList = allData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
-
-//   const distributionsList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.distributions.slice(0, 5)}`} data={obj.distributions} />)
   const incomeDividendList = allData.map((obj, i) => <TableData key={`${i}-${obj.income_dividend}`} data={obj.income_dividend} />)
+
+  const incomeHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.income_history.slice(0, 5)}`} data={obj.income_history} topAlign={true} />)
+  const capitalGainsHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.capital_gains_history.slice(0, 5)}`} data={obj.capital_gains_history} topAlign={true} />)
+
+  const weekAvgReturn52List = allData.map((obj, i) => <TableData key={`${i}-${obj.week_avg_return_52}`} data={obj.week_avg_return_52} />)
 
   const sectorList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.sector_allocation.slice(0, 5)}`} data={obj.sector_allocation} />)
 
@@ -180,6 +185,10 @@ export default function MutualFunds() {
                 {priceList}
               </tr>
               <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>52W Range</td>
+                {weekRange52List}
+              </tr>
+              <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
                 {netAssetsList}
               </tr>
@@ -195,17 +204,32 @@ export default function MutualFunds() {
                 <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
                 {yieldList}
               </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>5 Year</td>
+                {year5List}
+              </tr>
 
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Income Dividend</td>
                 {incomeDividendList}
               </tr>
-              {/* <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Distribution History</td>
-                {distributionsHistoryList}
-              </tr> */}
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
+                <td className={`${styles.td} ${styles.rowTitle}`}>52W Avg Return</td>
+                {weekAvgReturn52List}
+              </tr>
+
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Income History</td>
+                {incomeHistoryList}
+              </tr>
+
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Capital Gains History</td>
+                {capitalGainsHistoryList}
+              </tr>
+
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Total Returns History</td>
                 {returnHistoryList}
               </tr>
               <tr>
