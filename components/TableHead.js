@@ -15,7 +15,13 @@ export default function TableHead({ etfTicker, stockTicker, mutualFundTicker, re
     }
 
     const handleClose = () => {
-        etfTicker ? remove('etf', etfTicker) : remove('stock', stockTicker)
+        if (etfTicker) {
+            remove('etf', etfTicker)
+        } else if (stockTicker) {
+            remove('stock', stockTicker)
+        } else if (mutualFundTicker) {
+            remove('mutualFund', mutualFundTicker)
+        }
     }
 
     return (
