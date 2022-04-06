@@ -132,7 +132,7 @@ export default function MutualFunds() {
   const weekAvgReturn52List = allData.map((obj, i) => <TableData key={`${i}-${obj.week_avg_return_52}`} data={obj.week_avg_return_52} />)
   const familyList = allData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const categoryList = allData.map((obj, i) => <TableData key={`${i}-${obj.category.slice(0, 5)}`} data={obj.category} />)
-  const policyList = allData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} />)
+  const policyList = allData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} isParagraph={true} />)
 
   const incomeHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.income_history.slice(0, 5)}`} data={obj.income_history} topAlign={true} />)
   const capitalGainsHistoryList = allData.map((obj, i) => <NestedTable key={`${i}-${obj.capital_gains_history.slice(0, 5)}`} data={obj.capital_gains_history} topAlign={true} />)

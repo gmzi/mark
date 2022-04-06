@@ -4,19 +4,19 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* max-width: 800px; */
 }
 
 .h1 {
   margin: 5px 5px;
 }
 
+/* ---------------------------------------------------------- */
+/* TABLE STYLES */
+
 .table {
   border: 1px solid rgb(214, 206, 206);
   border-collapse: collapse;
   position: relative;
-  /* font-size: small; */
-  /* overflow-x: scroll; */
 }
 
 .tHead {
@@ -63,12 +63,6 @@
 .td {
   border-bottom: 1px solid rgba(0, 0, 255, 0.096);
   border-right: 1px solid rgba(0, 128, 0, 0.151);
-  /* text-overflow: ellipsis; 
-  word-wrap: break-word; */
-}
-
-.cellGuide {
-  border-bottom: 1px solid blue;
 }
 
 .topAlign {
