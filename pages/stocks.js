@@ -1,14 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import React, { useState, useEffect } from 'react';
-import StockLinkList from '../components/StockLinkList';
-import EtfLinkList from '../components/EtfLinkList';
-import EtfTable from '../components/EtfTable';
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout';
 import TableHead from '../components/TableHead';
 import TableData from '../components/TableData';
-import NestedTable from '../components/NestedTable';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -91,7 +86,7 @@ export default function Stocks() {
             return;
         }
     }
-    const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
+    // const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
     const tableHeadListStock = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} stockTicker={e} remove={remove} />)
     const priceListStock = allStockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
     const epsList = allStockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)

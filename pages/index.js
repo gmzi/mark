@@ -1,11 +1,6 @@
 import Head from 'next/head'
-import Link from 'next/link';
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import React, { useState, useEffect } from 'react';
-import StockLinkList from '../components/StockLinkList';
-import EtfLinkList from '../components/EtfLinkList';
-import EtfTable from '../components/EtfTable';
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import TableHead from '../components/TableHead';
 import TableData from '../components/TableData';
@@ -42,9 +37,6 @@ export default function Home() {
   const [allData, setAllData] = useState([])
   const [loading, setLoading] = useState()
 
-  // useEffect(() => {
-  // }, [loading])
-
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData((data) => ({
@@ -65,11 +57,6 @@ export default function Home() {
       return true;
     }
     return;
-  }
-
-  function addEtf(prevState, newData) {
-    const newTickers = [...prevState, newData]
-    setEtfTickers(newTickers)
   }
 
   const handleSubmit = async (e) => {
