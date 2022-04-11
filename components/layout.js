@@ -26,7 +26,7 @@ export default function Layout({ children }) {
                     <meta name="twitter:card" content="summary_large_image" />
                 </Head>
                 <main className={styles.main}>
-                    <nav className={styles.nav}>
+                    {/* <nav className={styles.nav}>
                         <Link href="/">
                             <a>etfs</a>
                         </Link>
@@ -36,7 +36,7 @@ export default function Layout({ children }) {
                         <Link href="/stocks">
                             <a>stocks</a>
                         </Link>
-                    </nav>
+                    </nav> */}
                     {children}
                 </main>
                 <footer className={styles.footer}>

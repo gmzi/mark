@@ -1,5 +1,5 @@
 import React from 'react';
-import Source from '../helpers/source';
+import Source from '../lib/source';
 import styles from '../styles/Home.module.css'
 
 export default function TableHead({ etfTicker, stockTicker, mutualFundTicker, remove }) {

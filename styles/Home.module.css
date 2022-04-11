@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .h1 {
@@ -91,10 +91,12 @@
     font-size: x-small;
   }
 }
-
+/* --------------------------------------- */
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form input[type='text'] {
@@ -103,6 +105,97 @@
   border-radius: 5px;
   font-size: large;
 }
+
+/* --------------------------------------- */
+/* DROPDOWN */
+
+.dropdownContainer {
+  line-height: 1.5;
+  color: rgba(0,0,0,.65);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-variant: normal;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border-radius: 4px;
+  box-sizing: border-box;
+  /* z-index: 1050; */
+  outline: none;
+  /* font-size: 14px; */
+}
+
+.dropdown {
+  overflow: auto;
+  transform: translateZ(0px);
+}
+
+.suggestionsList {
+  outline: none;
+  margin-top: 0;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
+  padding-inline-start: 40px;
+  list-style: none;
+  max-height: 18rem;
+  overflow: auto;
+}
+
+.suggestionsList:first-child{
+  border-radius: 4px 4px 0 0;
+}
+
+.dropdownItem {
+  /* white-space: nowrap; */
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background .3s ease;
+}
+
+.activeSuggestion {
+  background-color: #e6f7ff;
+}
+
+/* .suggestions {
+  border: 1px solid red;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.activeSuggestion, 
+.suggestions li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type){
+  border-bottom: 1px solid #999;
+}
+
+.activeSuggestion {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+}
+
+.inactiveSuggestion {
+  color: #999;
+  padding: 0.5rem;
+} */
+/* --------------------------------------- */
 
 .container {
   display: flex;
@@ -138,3 +231,4 @@
 .button:hover {
   box-shadow: 0px 4px 4px rgb(151, 151, 151);
 }
+
