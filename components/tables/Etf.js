@@ -14,6 +14,7 @@ export default function Etf({etfTickers, data, loading, remove}) {
 
   const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
   const priceList = data.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const weekRange52List = data.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const turnoverList = data.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
   const expenseList = data.map((obj, i) => <TableData key={`${i}-${obj.expense_ratio}`} data={obj.expense_ratio} />)
   const netAssetsList = data.map((obj, i) => <TableData key={`${i}-${obj.net_assets}`} data={obj.net_assets} />)
@@ -28,6 +29,8 @@ export default function Etf({etfTickers, data, loading, remove}) {
   const rankingList = data.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
   const familyList = data.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const legalList = data.map((obj, i) => <TableData key={`${i}-${obj.legal_type}`} data={obj.legal_type} />)
+  const policyList = data.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} isParagraph={true} />)
+
 
 
   return (
@@ -54,6 +57,10 @@ export default function Etf({etfTickers, data, loading, remove}) {
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Price $</td>
                 {priceList}
+              </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>52W Range</td>
+                {weekRange52List}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
@@ -110,6 +117,10 @@ export default function Etf({etfTickers, data, loading, remove}) {
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
                 {legalList}
+              </tr>
+              <tr>
+                  <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
+                  {policyList}
               </tr>
             </tbody>
           </table>

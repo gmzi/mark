@@ -30,6 +30,7 @@ export default function AutoComplete({makeRequest}){
     }
 
     const onClick = (e) => {
+        console.log('click', e)
         setFilteredSuggestions([]);
         setInput(e.target.innerText);
         setActiveSuggestionIndex(0);
