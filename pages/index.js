@@ -9,6 +9,8 @@ import AutoComplete from '../components/autocomplete';
 import Etf from '../components/tables/Etf';
 import MF from '../components/tables/MF';
 import Stock from '../components/tables/Stock';
+import SampleEtf from '../components/tables/SampleEtf';
+import Table from '../components/Table';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -152,11 +154,14 @@ export default function Home() {
       </Head>
       <h1 className={styles.h1}>/Mark/</h1>
       <AutoComplete input={input} setInput={setInput} makeRequest={makeRequest}/>
-      <div className={styles.mainGrid}>
+
+      <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} loading={loading} remove={remove}/>
+      
+      {/* <div className={styles.mainGrid}>
         <Etf etfTickers={etfTickers} data={etfData} loading={loading} remove={remove}/>
         <MF MFTickers={MFTickers} data={MFData} loading={loading} remove={remove}/>
         <Stock stockTickers={stockTickers} data={stockData} loading={loading} remove={remove}/>
-      </div>
+      </div> */}
       {/* <div>
         <span>data scraped from <a href="https://marketwatch.com" target="_blank" rel='noreferrer'>MarketWatch</a> and <a href="https://finance.yahoo.com" target="_blank" rel='noreferrer'>Yahoo Finance</a></span>
       </div> */}
