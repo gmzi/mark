@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 
 const KEYWORD_URL = process.env.NEXT_PUBLIC_KEYWORD_URL;
 
-export default function AutoComplete({makeRequest, setLoading}){
+export default function Autocomplete({makeRequest, setLoading}){
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
