@@ -7,7 +7,7 @@ export default function SuggestionsListComponent({filteredSuggestions, activeSug
 
   useEffect(() => {
     const node = myRef.current
-    if (node.childElementCount > 0) {
+    if (node) {
       if (activeSuggestionIndex < node.childElementCount){
         moveScroll(node)
       }

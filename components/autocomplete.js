@@ -30,7 +30,6 @@ export default function AutoComplete({makeRequest}){
     }
 
     const onClick = (e) => {
-        console.log('click', e)
         setFilteredSuggestions([]);
         setInput(e.target.innerText);
         setActiveSuggestionIndex(0);
@@ -40,7 +39,7 @@ export default function AutoComplete({makeRequest}){
     const onKeyDown = (key) => {
         if (key.keyCode === 13 || key.keyCode === 9) {
             if (filteredSuggestions[activeSuggestionIndex]){
-                setInput(filteredSuggestions[activeSuggestionIndex])
+                setInput(filteredSuggestions[activeSuggestionIndex].trim())
             } 
             setFilteredSuggestions([]);
             setActiveSuggestionIndex(0);
@@ -71,9 +70,9 @@ export default function AutoComplete({makeRequest}){
         let tickerInput
         if (input.indexOf(',') > -1) {
             const splittedInput = input.split(',')
-            tickerInput = splittedInput[0].toLowerCase()
+            tickerInput = splittedInput[0].trim().toLowerCase()
         } else {
-            tickerInput = input.toLowerCase()    
+            tickerInput = input.trim().toLowerCase()    
         }
         await makeRequest(tickerInput)
         setFilteredSuggestions([]);

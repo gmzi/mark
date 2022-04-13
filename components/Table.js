@@ -1,22 +1,16 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useEffect } from 'react';
 import TableHead from './TableHead';
 import TableData from './TableData';
 import NestedTable from './NestedTable';
-import EtfRows from './rows/EtfRows';
 
 
 
 export default function Table({etfTickers, etfData, MFTickers, MFData, stockTickers, stockData, loading, remove}) {
 
-  useEffect(() => {
-  }, [etfData, loading])
-
-
 // --------------------------------------------------------------------------------------------------------------
 // MFs 
-  const MFtableHeadList = MFTickers.map((e, i) => <TableHead key={`${i}-${e}`} mutualFundTicker={e} remove={remove} />)
+  const MFtableHeadList = MFTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"mf"} ticker={e} remove={remove} />)
   const MFpriceList = MFData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const MFweekRange52List = MFData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const MFyear5List = MFData.map((obj, i) => <TableData key={`${i}-${obj.year_5}`} data={obj.year_5} />)
@@ -41,7 +35,7 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const MFrankingList = MFData.map((obj, i) => <NestedTable key={`${i}-${obj.lipper_ranking.slice(0, 5)}`} data={obj.lipper_ranking} topAlign={false} />)
 // --------------------------------------------------------------------------------------------------------------
 // ETFs
-  const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} etfTicker={e} remove={remove} />)
+  const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"etf"} ticker={e} remove={remove} />)
   const priceList = etfData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const weekRange52List = etfData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const turnoverList = etfData.map((obj, i) => <TableData key={`${i}-${obj.symbol}`} data={obj.turnover_ratio} />)
@@ -62,7 +56,7 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   // --------------------------------------------------------------------------------------------------------------
  //   STOCKS
  // const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
-  const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} stockTicker={e} remove={remove} />)
+  const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"stock"} ticker={e} remove={remove} />)
   const STOCKpriceList = stockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const STOCKweekRange52List = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const STOCKepsList = stockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)

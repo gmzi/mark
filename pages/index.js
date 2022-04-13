@@ -2,14 +2,10 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
-import TableHead from '../components/TableHead';
-import TableData from '../components/TableData';
-import NestedTable from '../components/NestedTable';
 import AutoComplete from '../components/autocomplete';
 import Etf from '../components/tables/Etf';
 import MF from '../components/tables/MF';
 import Stock from '../components/tables/Stock';
-import SampleEtf from '../components/tables/SampleEtf';
 import Table from '../components/Table';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -33,6 +29,9 @@ export default function Home() {
   const [loading, setLoading] = useState()
   const [input, setInput] = useState("")
 
+  useEffect(() => {
+  }, [etfData])
+
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData((data) => ({
@@ -44,9 +43,6 @@ export default function Home() {
   const handleClearSearch = () => {
     setFormData(() => (initialState))
   }
-
-  useEffect(() => {
-  }, [etfData])
 
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
@@ -122,26 +118,29 @@ export default function Home() {
       return;
   }
 
-  const remove = (list, ticker) => {
-    if (list === 'stock') {
-      const removedArr = [...stockTickers].filter((s) => s !== ticker)
+  const remove = (asset_class, ticker) => {
+    if (asset_class === 'stock') {
+      const indexOfObject = stockData.findIndex((obj) => obj.symbol === ticker)
+      stockData.splice(indexOfObject, 1)
+      setStockData(stockData)
+      const removedArr = [...stockTickers].filter((e) => e !== ticker)
       setStockTickers(removedArr)
-      const removedData = [...stockData].filter((obj) => obj.symbol !== ticker)
-      setStockData(removedData)
       return;
     }
-    if (list === 'etf') {
+    if (asset_class === 'etf') {
+      const indexOfObject = etfData.findIndex((obj) => obj.symbol === ticker)
+      etfData.splice(indexOfObject, 1)
+      setEtfData(etfData)
       const removedArr = [...etfTickers].filter((e) => e !== ticker)
       setEtfTickers(removedArr)
-      const removedData = [...etfData].filter((obj) => obj.symbol !== ticker)
-      setEtfData(removedData)
       return;
     }
-    if (list === 'mutualFund') {
+    if (asset_class === 'mf') {
+      const indexOfObject = MFData.findIndex((obj) => obj.symbol === ticker)
+      MFData.splice(indexOfObject, 1)
+      setMFData(MFData)
       const removedArr = [...MFTickers].filter((e) => e !== ticker)
       setMFTickers(removedArr)
-      const removedData = [...MFData].filter((obj) => obj.symbol !== ticker)
-      setMFData(removedData)
       return;
     }
   }
@@ -154,17 +153,14 @@ export default function Home() {
       </Head>
       <h1 className={styles.h1}>/Mark/</h1>
       <AutoComplete input={input} setInput={setInput} makeRequest={makeRequest}/>
-
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
-      
-      {/* <div className={styles.mainGrid}>
-        <Etf etfTickers={etfTickers} data={etfData} loading={loading} remove={remove}/>
-        <MF MFTickers={MFTickers} data={MFData} loading={loading} remove={remove}/>
-        <Stock stockTickers={stockTickers} data={stockData} loading={loading} remove={remove}/>
-      </div> */}
-      {/* <div>
-        <span>data scraped from <a href="https://marketwatch.com" target="_blank" rel='noreferrer'>MarketWatch</a> and <a href="https://finance.yahoo.com" target="_blank" rel='noreferrer'>Yahoo Finance</a></span>
-      </div> */}
     </Layout>
   )
 }
+
+
+/* <div className={styles.mainGrid}>
+    <Etf etfTickers={etfTickers} data={etfData} loading={loading} remove={remove}/>
+    <MF MFTickers={MFTickers} data={MFData} loading={loading} remove={remove}/>
+    <Stock stockTickers={stockTickers} data={stockData} loading={loading} remove={remove}/>
+  </div> */

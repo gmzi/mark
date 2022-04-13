@@ -1,40 +1,43 @@
 import React from 'react';
-import Source from '../lib/source';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
-export default function TableHead({ etfTicker, stockTicker, mutualFundTicker, remove }) {
+export default function TableHead({asset_class, ticker, remove}){
 
-    let ticker; 
+    const displayTicker = ticker.toUpperCase();
 
-    if (etfTicker) {
-        ticker = etfTicker.toUpperCase();
-    } else if (stockTicker) {
-        ticker = stockTicker.toUpperCase();
-    } else if (mutualFundTicker) {
-        ticker = mutualFundTicker.toUpperCase();
-    }
 
     const handleClose = () => {
-        if (etfTicker) {
-            remove('etf', etfTicker)
-        } else if (stockTicker) {
-            remove('stock', stockTicker)
-        } else if (mutualFundTicker) {
-            remove('mutualFund', mutualFundTicker)
-        }
+        remove(asset_class, ticker)
+    }
+
+    if (asset_class === "stock") {
+        return (
+            <th className={styles.th}>
+                <div className={styles.headerContainer}>
+                    <button onClick={handleClose} className={`${styles.button} ${styles.headerBtn}`}>X</button>
+                    <span className={`${styles.span} ${styles.stockSpan}`}> {displayTicker}</span>
+                </div>
+            </th>
+        )
+    }
+
+    if (asset_class === "mf") {
+        return (
+            <th className={styles.th}>
+                <div className={styles.headerContainer}>
+                    <button onClick={handleClose} className={`${styles.button} ${styles.headerBtn}`}>X</button>
+                    <span className={`${styles.span} ${styles.mfSpan}`}> {displayTicker}</span>
+                </div>
+            </th>
+        )
     }
 
     return (
         <th className={styles.th}>
-            <div className={styles.headerContainer}>
-                <button onClick={handleClose} className={`${styles.button} ${styles.headerBtn}`}>X</button>
-                {etfTicker ? (
-                    <span className={`${styles.span} ${styles.etfSpan}`}> {ticker}</span>
-                ) : (
-                    <span className={`${styles.span} ${styles.stockSpan}`}> {ticker}</span>
-                )}
-            </div>
-        </th >
+                <div className={styles.headerContainer}>
+                    <button onClick={handleClose} className={`${styles.button} ${styles.headerBtn}`}>X</button>
+                    <span className={`${styles.span} ${styles.etfSpan}`}> {displayTicker}</span>
+                </div>
+            </th>
     )
 }
-

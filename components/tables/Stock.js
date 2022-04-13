@@ -8,8 +8,8 @@ import NestedTable from '../NestedTable';
 
 export default function Stock({stockTickers, data, loading, remove}) {
 
-    useEffect(() => {
-    }, [data, loading])
+    // useEffect(() => {
+    // }, [data, loading])
 
 
     

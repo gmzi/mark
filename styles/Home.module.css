@@ -72,6 +72,10 @@
   color: #9007df;
 }
 
+.mfSpan {
+  color: red;
+}
+
 .headerContainer {
   display: flex;
   flex-direction: row;
