@@ -2,47 +2,37 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
-import AutoComplete from '../components/autocomplete';
-import Etf from '../components/tables/Etf';
-import MF from '../components/tables/MF';
-import Stock from '../components/tables/Stock';
+import AutoComplete from '../components/Autocomplete';
 import Table from '../components/Table';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
 
 export default function Home() {
-  const initialState = {
-    tickerInput: '',
-  }
-  const [formData, setFormData] = useState(initialState)
 
   const [etfTickers, setEtfTickers] = useState([])
   const [etfData, setEtfData] = useState([])
-
   const [MFTickers, setMFTickers] = useState([])
   const [MFData, setMFData] = useState([])
-
   const [stockTickers, setStockTickers] = useState([])
   const [stockData, setStockData] = useState([])
-
   const [loading, setLoading] = useState()
   const [input, setInput] = useState("")
 
-  useEffect(() => {
-  }, [etfData])
+  // useEffect(() => {
+  // }, [etfData])
 
-  const handleChange = async (e) => {
-    const { name, value } = e.target;
-    setFormData((data) => ({
-      ...data,
-      [name]: value
-    }))
-  }
+  // const handleChange = async (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((data) => ({
+  //     ...data,
+  //     [name]: value
+  //   }))
+  // }
 
-  const handleClearSearch = () => {
-    setFormData(() => (initialState))
-  }
+  // const handleClearSearch = () => {
+  //   setFormData(() => (initialState))
+  // }
 
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
@@ -65,7 +55,7 @@ export default function Home() {
       }
       const newTickers = [...etfTickers, ticker]
       setEtfTickers(newTickers)
-      setLoading(true)
+      // setLoading(true)
       const res = await fetch(`${SERVER}/etf/${ticker}`)
       if (res.ok) {
         const result = await res.json();
@@ -84,7 +74,7 @@ export default function Home() {
         }
         const newTickers = [...MFTickers, ticker]
         setMFTickers(newTickers)
-        setLoading(true)
+        // setLoading(true)
         const res = await fetch(`${SERVER}/mutual_fund/${ticker}`)
         if (res.ok){
           const result = await res.json();
@@ -103,7 +93,7 @@ export default function Home() {
         }
         const newTickers = [...stockTickers, ticker]
         setStockTickers(newTickers)
-        setLoading(true)
+        // setLoading(true)
         const res = await fetch(`${SERVER}/stock/${ticker}`)
         if (res.ok){
           const result = await res.json();
@@ -151,16 +141,10 @@ export default function Home() {
         <title>Mark</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
-      <h1 className={styles.h1}>/Mark/</h1>
-      <AutoComplete input={input} setInput={setInput} makeRequest={makeRequest}/>
+      <h1 className={styles.h1}>/mark/</h1>
+      <p className={styles.h1}>fund comparison tool</p>
+      <AutoComplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
     </Layout>
   )
 }
-
-
-/* <div className={styles.mainGrid}>
-    <Etf etfTickers={etfTickers} data={etfData} loading={loading} remove={remove}/>
-    <MF MFTickers={MFTickers} data={MFData} loading={loading} remove={remove}/>
-    <Stock stockTickers={stockTickers} data={stockData} loading={loading} remove={remove}/>
-  </div> */

@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 
 const KEYWORD_URL = process.env.NEXT_PUBLIC_KEYWORD_URL;
 
-export default function AutoComplete({makeRequest}){
+export default function AutoComplete({makeRequest, setLoading}){
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -67,6 +67,7 @@ export default function AutoComplete({makeRequest}){
         if (input === ''){
             return
         }
+        setLoading(true)
         let tickerInput
         if (input.indexOf(',') > -1) {
             const splittedInput = input.split(',')
@@ -91,6 +92,7 @@ export default function AutoComplete({makeRequest}){
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 value={input}
+                placeholder="enter ticker symbol"
             />
             {showSuggestions && input && 
                     <SuggestionsList filteredSuggestions={filteredSuggestions} activeSuggestionIndex={activeSuggestionIndex} onClick={onClick}/>
