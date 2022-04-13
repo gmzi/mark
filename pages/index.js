@@ -143,12 +143,8 @@ export default function Home() {
       </Head>
       <h1 className={styles.h1}>/mark/</h1>
       <p className={styles.h1}>fund comparison tool</p>
-      
+      <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
     </Layout>
   )
 }
-
-/*
-<Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>
-*/
