@@ -5,17 +5,11 @@ import TableHead from '../TableHead';
 import TableData from '../TableData';
 import NestedTable from '../NestedTable';
 
-export default function MFRows({navList, legalList}){
+export default function MFRows({data}){
     return (
       <>
-        <tr>
-            <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
-            {navList}
-        </tr>
-        <tr>
-            <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
-            {legalList}
-        </tr>
+        <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
+        {data}
       </>
     )
 }

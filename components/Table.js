@@ -8,7 +8,7 @@ import EtfRows from './rows/EtfRows';
 
 
 
-export default function Table({etfTickers, etfData, MFTickers, MFData, loading, remove}) {
+export default function Table({etfTickers, etfData, MFTickers, MFData, stockTickers, stockData, loading, remove}) {
 
   useEffect(() => {
   }, [etfData, loading])
@@ -59,9 +59,25 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, loading, 
   const familyList = etfData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const legalList = etfData.map((obj, i) => <TableData key={`${i}-${obj.legal_type}`} data={obj.legal_type} />)
   const policyList = etfData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} isParagraph={true} />)
+  // --------------------------------------------------------------------------------------------------------------
+ //   STOCKS
+ // const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
+  const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} stockTicker={e} remove={remove} />)
+  const STOCKpriceList = stockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const STOCKweekRange52List = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
+  const STOCKepsList = stockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)
+  const STOCKpeList = stockData.map((obj, i) => <TableData key={`${i}-${obj.p_e}`} data={obj.p_e} />)
+  const STOCKmktCapList = stockData.map((obj, i) => <TableData key={`${i}-${obj.market_cap}`} data={obj.market_cap} />)
+  const STOCKbetaList = stockData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
+  const STOCKdividendList = stockData.map((obj, i) => <TableData key={`${i}-${obj.dividend}`} data={obj.latest_dividend} />)
+  const STOCKdividendYieldList = stockData.map((obj, i) => <TableData key={`${i}-${obj.dividend_yield}`} data={obj.dividend_yield} />)
+  const STOCKpolicyList = stockData.map((obj, i) => <TableData key={`${i}-${obj.policy.slice(0, 5)}`} data={obj.policy} isParagraph={true} />)
+  // const weekHighList = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_high}`} data={obj.week_high} />)
+  // const weekLowList = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_low}`} data={obj.week_low} />)
 
 const MFPlaceholder = MFTickers.map((e, i) => <td className={`${styles.td} ${styles.rowTitle}`} key={`${i}-${e}`}>–</td>)
-const ETFlaceholder = etfTickers.map((e, i) => <td className={`${styles.td} ${styles.rowTitle}`} key={`${i}-${e}`}>–</td>)
+const ETFPlaceholder = etfTickers.map((e, i) => <td className={`${styles.td} ${styles.rowTitle}`} key={`${i}-${e}`}>–</td>)
+const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td} ${styles.rowTitle}`} key={`${i}-${e}`}>–</td>)
 
   return (
     <>
@@ -69,7 +85,7 @@ const ETFlaceholder = etfTickers.map((e, i) => <td className={`${styles.td} ${st
         <title>Mark/ETFs</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
-        {etfTickers.length || MFTickers.length ? (
+        {etfTickers.length || MFTickers.length || stockTickers.length ? (
           <>
           {loading &&
           <div>
@@ -82,6 +98,7 @@ const ETFlaceholder = etfTickers.map((e, i) => <td className={`${styles.td} ${st
                 <th className={styles.th}></th>
                 {tableHeadList}
                 {MFtableHeadList}
+                {STOCKtableHeadList}
               </tr>
             </thead>
             <tbody>
@@ -89,88 +106,169 @@ const ETFlaceholder = etfTickers.map((e, i) => <td className={`${styles.td} ${st
                 <td className={`${styles.td} ${styles.rowTitle}`}>Price $</td>
                 {priceList}
                 {MFpriceList}
+                {STOCKpriceList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>52W Range</td>
                 {weekRange52List}
                 {MFweekRange52List}
+                {STOCKweekRange52List}
               </tr>
               {etfTickers.length ? (
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
                 {navList}
                 {MFPlaceholder}
+                {STOCKPlaceholder}
               </tr>
               ) : null}
+              {etfTickers.length || MFTickers.length ? (
+              <>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
                 {netAssetsList}
                 {MFnetAssetsList}
+                {STOCKPlaceholder}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Turnover</td>
                 {turnoverList}
                 {MFturnoverList}
+                {STOCKPlaceholder}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Expense Ratio</td>
                 {expenseList}
                 {MFexpenseList}
+                {STOCKPlaceholder}
               </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
-                {betaList}
-                {MFbetaList}
-              </tr>
+              </>     
+              ): null}
+
+              {stockTickers.length ? (
+                  <>
+                    <tr>
+                        <td className={`${styles.td} ${styles.rowTitle}`}>EPS(TTM)</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKepsList}
+                    </tr>
+                    <tr>
+                        <td className={`${styles.td} ${styles.rowTitle}`}>P/E(TTM)</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKpeList}
+                    </tr>
+                  </>
+              ): null}
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
                 {yieldList}
                 {MFyieldList}
+                {STOCKdividendYieldList}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Latest Dividend</td>
                 {dividendLastList}
                 {MFincomeDividendList}
+                {STOCKdividendList}
               </tr>
+              {etfTickers.length || MFTickers.length ? (
+                  <>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Dividend History</td>
                 {dividendHistoryList}
                 {MFincomeHistoryList}
+                {STOCKPlaceholder}
               </tr>
+              </>
+              ) : null}
+              {MFTickers.length ? (
+                  <tr>
+                    <td className={`${styles.td} ${styles.rowTitle}`}>Capital Gains History</td>
+                    {ETFPlaceholder}
+                    {MFcapitalGainsHistoryList}
+                  </tr>
+              ): null}
+                {etfTickers.length || MFTickers.length ? (
+              <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Return History</td>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Total Returns History</td>
                 {returnHistoryList}
                 {MFreturnHistoryList}
+                {STOCKPlaceholder}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
                 {sectorList}
                 {MFsectorList}
+                {STOCKPlaceholder}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Top holdings</td>
                 {top10List}
                 {MFtop10List}
+                {STOCKPlaceholder}
               </tr>
+              </>
+                ): null}
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
+                {betaList}
+                {MFbetaList}
+                {STOCKbetaList}
+              </tr>
+
+              {MFTickers.length ? (
+                  <>
+                  <tr>
+                    <td className={`${styles.td} ${styles.rowTitle}`}>Alpha</td>
+                    {ETFPlaceholder}
+                    {MFalphaList}
+                    {STOCKPlaceholder}
+                  </tr>
+                  <tr>
+                    <td className={`${styles.td} ${styles.rowTitle}`}>S. Deviation</td>
+                    {ETFPlaceholder}
+                    {MFstandardDevidationList}
+                    {STOCKPlaceholder}
+                  </tr>
+                  <tr>
+                    <td className={`${styles.td} ${styles.rowTitle}`}>R. Squared</td>
+                    {ETFPlaceholder}
+                    {MFrSquaredList}
+                    {STOCKPlaceholder}
+                  </tr>
+                  </>
+              ): null}
+              {etfTickers.length || MFTickers.length ? (
+                  <>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>YTD Lipper Ranking</td>
                 {rankingList}
                 {MFrankingList}
+                {STOCKPlaceholder}
               </tr>
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Fund Family</td>
                 {familyList}
                 {MFfamilyList}
+                {STOCKPlaceholder}
               </tr>
+              </>
+                ): null}
               <tr>
-                  <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
-                  {policyList}
-                  {MFpolicyList}
+                <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
+                {policyList}
+                {MFpolicyList}
+                {STOCKpolicyList}
               </tr>
               {etfTickers.length ? (
                   <tr>
-                    <EtfRows legalList={legalList}/>
+                    <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
+                    {legalList}
                     {MFPlaceholder}
+                    {STOCKPlaceholder}
                   </tr>
               ): null}
             </tbody>

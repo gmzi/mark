@@ -5,12 +5,12 @@ import TableHead from '../TableHead';
 import TableData from '../TableData';
 import NestedTable from '../NestedTable';
 
-export default function EtfRows({legalList}){
+export default function EtfRows({data}){
     return (
         
-            <>
-            <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
-            {legalList}
+      <>
+        <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
+        {data}
       </>
     )
 }

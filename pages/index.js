@@ -155,7 +155,7 @@ export default function Home() {
       <h1 className={styles.h1}>/Mark/</h1>
       <AutoComplete input={input} setInput={setInput} makeRequest={makeRequest}/>
 
-      <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} loading={loading} remove={remove}/>
+      <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
       
       {/* <div className={styles.mainGrid}>
         <Etf etfTickers={etfTickers} data={etfData} loading={loading} remove={remove}/>
