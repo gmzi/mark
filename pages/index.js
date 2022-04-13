@@ -36,15 +36,18 @@ export default function Home() {
 
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
+      setLoading(false)
       return true;
     }
     return;
   }
 
+
   const makeRequest = async (ticker) => {
     const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json())
     if(response.error){
       alert("that's not found")
+      setLoading(false)
       return
     }
 
@@ -144,6 +147,11 @@ export default function Home() {
       <h1 className={styles.h1}>/mark/</h1>
       <p className={styles.h1}>fund comparison tool</p>
       <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
+      {loading &&
+          <div>
+            <p>Fetching data...</p>
+          </div>
+      }
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
     </Layout>
   )

@@ -6,7 +6,7 @@ import NestedTable from './NestedTable';
 
 
 
-export default function Table({etfTickers, etfData, MFTickers, MFData, stockTickers, stockData, loading, remove}) {
+export default function Table({etfTickers, etfData, MFTickers, MFData, stockTickers, stockData, remove}) {
 
 // --------------------------------------------------------------------------------------------------------------
 // MFs 
@@ -81,10 +81,6 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
       </Head>
         {etfTickers.length || MFTickers.length || stockTickers.length ? (
           <>
-          {loading &&
-          <div>
-            <p>Fetching data...</p>
-          </div>}
       <div className={styles.grid}>
           <table className={styles.table}>
             <thead className={`${styles.tHead} ${styles.etfHead}`}>
