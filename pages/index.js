@@ -2,8 +2,8 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
-import Autocomplete from '../components/Autocomplete';
 import Table from '../components/Table';
+import Autocomplete from '../components/autocomplete';
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -143,8 +143,12 @@ export default function Home() {
       </Head>
       <h1 className={styles.h1}>/mark/</h1>
       <p className={styles.h1}>fund comparison tool</p>
-      <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>
+      
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
     </Layout>
   )
 }
+
+/*
+<Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>
+*/
