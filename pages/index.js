@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import Table from '../components/Table';
 import Autocomplete from '../components/autocomplete';
+import {isDuplicate, dataRequest} from '../lib/helpers';
 
-const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
+const SERVER_CLASS = process.env.NEXT_PUBLIC_SERVER_CLASS;
 
 export default function Home() {
-
   const [etfTickers, setEtfTickers] = useState([])
   const [etfData, setEtfData] = useState([])
   const [MFTickers, setMFTickers] = useState([])
@@ -19,32 +19,11 @@ export default function Home() {
   const [loading, setLoading] = useState()
   const [input, setInput] = useState("")
 
-  // useEffect(() => {
-  // }, [etfData])
-
-  // const handleChange = async (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((data) => ({
-  //     ...data,
-  //     [name]: value
-  //   }))
-  // }
-
-  // const handleClearSearch = () => {
-  //   setFormData(() => (initialState))
-  // }
-
-  function isDuplicate(array, value) {
-    if ([...array].includes(value)) {
-      setLoading(false)
-      return true;
-    }
-    return;
-  }
-
 
   const makeRequest = async (ticker) => {
-    const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json())
+    
+    const response = await fetch(`${SERVER_CLASS}${ticker}`).then(async(res) => res.json());
+
     if(response.error){
       alert("that's not found")
       setLoading(false)
@@ -58,18 +37,7 @@ export default function Home() {
       }
       const newTickers = [...etfTickers, ticker]
       setEtfTickers(newTickers)
-      // setLoading(true)
-      const res = await fetch(`${SERVER}/etf/${ticker}`)
-      if (res.ok) {
-        const result = await res.json();
-        const newData = [...etfData, result]
-        setEtfData(newData)
-      } else {
-        alert("that's not found")
-        return
-      }
-      setLoading(false)
-
+      await dataRequest('etf', ticker, etfData, setEtfData, setLoading)
       } else if (response.asset_class === 'Mutual Funds') {
         if (isDuplicate(MFTickers, ticker)) {
           alert('already displayed')
@@ -77,18 +45,7 @@ export default function Home() {
         }
         const newTickers = [...MFTickers, ticker]
         setMFTickers(newTickers)
-        // setLoading(true)
-        const res = await fetch(`${SERVER}/mutual_fund/${ticker}`)
-        if (res.ok){
-          const result = await res.json();
-          const newData = [...MFData, result]
-          setMFData(newData)
-        } else {
-          alert("that's not found")
-          return;
-        }
-        setLoading(false)
-
+        await dataRequest("mf", ticker, MFData, setMFData, setLoading)
       } else if (response.asset_class === 'Stocks') {
         if (isDuplicate(stockTickers, ticker)) {
           alert('already displayed')
@@ -96,17 +53,7 @@ export default function Home() {
         }
         const newTickers = [...stockTickers, ticker]
         setStockTickers(newTickers)
-        // setLoading(true)
-        const res = await fetch(`${SERVER}/stock/${ticker}`)
-        if (res.ok){
-          const result = await res.json();
-          const newData = [...stockData, result]
-          setStockData(newData)
-        } else {
-          alert("that's not found")
-          return;
-        }
-        setLoading(false)
+        await dataRequest("stock", ticker, stockData, setStockData, setLoading)
       }
       return;
   }
