@@ -7,7 +7,9 @@ import Autocomplete from '../components/autocomplete';
 import {isDuplicate, dataRequest} from '../lib/helpers';
 
 
+
 const SERVER_CLASS = process.env.NEXT_PUBLIC_SERVER_CLASS;
+const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function Home() {
   const [etfTickers, setEtfTickers] = useState([])
@@ -21,7 +23,7 @@ export default function Home() {
 
 
   const makeRequest = async (ticker) => {
-    
+
     const response = await fetch(`${SERVER_CLASS}${ticker}`).then(async(res) => res.json());
 
     if(response.error){
@@ -56,6 +58,20 @@ export default function Home() {
         await dataRequest("stock", ticker, stockData, setStockData, setLoading)
       }
       return;
+  }
+
+  async function dataRequest(asset_class, ticker, stateData, setStateData){
+    const res = await fetch(`${SERVER}/${asset_class}/${ticker}`)
+        if (res.ok){
+          const result = await res.json();
+          const newData = [...stateData, result]
+          setStateData(newData)
+        } else {
+          alert("that's not found")
+          remove(asset_class, ticker)
+        }
+        setLoading(false)
+        return
   }
 
   const remove = (asset_class, ticker) => {
