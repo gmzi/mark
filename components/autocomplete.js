@@ -94,10 +94,10 @@ export default function Autocomplete({makeRequest, setLoading}){
                 value={input}
                 placeholder="enter ticker symbol"
             />
+            <input type="submit"/>
             {showSuggestions && input && 
                     <SuggestionsList filteredSuggestions={filteredSuggestions} activeSuggestionIndex={activeSuggestionIndex} onClick={onClick}/>
-                    }
-            <input type="submit" className={styles.button} />
+            }
        </form>
     );
 };

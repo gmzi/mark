@@ -57,6 +57,8 @@ export default function Home() {
       return;
   }
 
+  const references = makeReferences(etfTickers, MFTickers, stockTickers)
+
   function isDuplicate(array, value) {
     if ([...array].includes(value)) {
       setLoading(false)
@@ -106,21 +108,47 @@ export default function Home() {
     }
   }
 
+  function makeReferences(arr1, arr2, arr3){
+    const items = {
+      etf: arr1.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refEtf}`}></div>ETFs</li>): null,
+      mf: arr2.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refMf}`}></div>Mutual Funds</li>): null,
+      stock: arr3.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refStock}`}></div>Stocks</li>): null
+    }
+
+    const totalLength = arr1.length + arr2.length + arr3.length;
+
+    if (totalLength > 1){
+
+      return (
+        <ul className={styles.refList}>
+          {items.etf}
+          {items.mf}
+          {items.stock}
+        </ul>
+      )
+    }
+    return null;
+  }
+
+
   return (
     <Layout>
       <Head>
         <title>Mark</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
+      <div className={styles.mainGrid}>
       <h1 className={styles.h1}>/mark/</h1>
-      <p className={styles.h1}>fund comparison tool</p>
+      <h2 className={styles.h2}>fund comparison tool</h2>
       <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
       {loading &&
           <div>
             <p>Fetching data...</p>
           </div>
       }
+      {references}
       <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
+      </div>
     </Layout>
   )
 }
