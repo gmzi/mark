@@ -149,9 +149,12 @@
 }
 
 @media (max-width: 700px) {
+  .mainGrid{
+    font-size: small;
+  }
   .grid {
     width: 100%;
-    flex-direction: column;
+    flex-direction: row;
   }
   .table {
     font-size: x-small;
