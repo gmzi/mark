@@ -83,7 +83,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
           <>
       <div className={styles.grid}>
           <table className={styles.table}>
-            <thead className={`${styles.tHead} ${styles.etfHead}`}>
+            <thead className={`${styles.tHead} ${styles.emptyHead}`}>
               <tr>
                 <th className={styles.th}></th>
                 {tableHeadList}

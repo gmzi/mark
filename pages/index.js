@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import Table from '../components/Table';
 import Autocomplete from '../components/autocomplete';
-import {isDuplicate, dataRequest} from '../lib/helpers';
 
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -56,6 +55,14 @@ export default function Home() {
         await dataRequest("stock", ticker, stockData, setStockData, setLoading)
       }
       return;
+  }
+
+  function isDuplicate(array, value) {
+    if ([...array].includes(value)) {
+      setLoading(false)
+      return true;
+    }
+    return;
   }
 
   async function dataRequest(asset_class, ticker, stateData, setStateData){

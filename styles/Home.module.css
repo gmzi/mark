@@ -38,10 +38,6 @@
   background-color: #dad9d0f5;
 }
 
-.etfHead {
-  background-color: #012057f5;
-}
-
 .th {
   border: 8px solid white;
 }
@@ -63,17 +59,36 @@
   margin: 0px 0px;
 }
 
-.etfSpan {
-  /* color: #00ddff; */
-  color: #f8c56c;
+.emptyHead {
+  background-color: #dad9d0f5;
 }
 
-.stockSpan {
-  color: #9007df;
+.etfHead {
+  /* background-color: #012057f5; */
+  background-color: #223392;
+}
+
+.etfSpan {
+  /* color: #f8c56c; */
+  color: #ffdba4;
+}
+
+.mfHead {
+  /* background-color: #573801 */
+  background-color: #abd1ff;
 }
 
 .mfSpan {
-  color: red;
+  color: #e54b22;
+}
+
+.stockHead {
+  /* background-color: #A502FD; */
+  background-color: #ffcb3b;
+}
+
+.stockSpan {
+  color: #02248b;
 }
 
 .headerContainer {
