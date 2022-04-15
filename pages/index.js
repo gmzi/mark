@@ -114,11 +114,21 @@ export default function Home() {
       mf: arr2.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refMf}`}></div>Mutual Funds</li>): null,
       stock: arr3.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refStock}`}></div>Stocks</li>): null
     }
-
+    let etfsInTable = 0
+    let mfsInTable = 0
+    let stocksInTable = 0
+    if (arr1.length > 0){
+      etfsInTable = 1;
+    }
+    if (arr2.length > 0){
+      mfsInTable = 1;
+    }
+    if (arr3.length > 0){
+      stocksInTable = 1;
+    }
+    const classesInTable = etfsInTable + mfsInTable + stocksInTable
     const totalLength = arr1.length + arr2.length + arr3.length;
-
-    if (totalLength > 1){
-
+    if (totalLength > 1 && classesInTable > 1){
       return (
         <ul className={styles.refList}>
           {items.etf}

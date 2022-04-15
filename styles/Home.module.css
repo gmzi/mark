@@ -29,6 +29,8 @@
   border-collapse: collapse;
   /* position: relative; */
   width: 100%;
+  /* overflow: auto; */
+  word-wrap: break-word;
 }
 
 .tHead {
