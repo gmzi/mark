@@ -7,8 +7,6 @@ import Autocomplete from '../components/autocomplete';
 import {isDuplicate, dataRequest} from '../lib/helpers';
 
 
-
-const SERVER_CLASS = process.env.NEXT_PUBLIC_SERVER_CLASS;
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function Home() {
