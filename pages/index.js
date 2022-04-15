@@ -28,10 +28,11 @@ export default function Home() {
 
     // local server:
     const url = `${SERVER_CLASS}${ticker}`;
-    const response = await fetch(url, {
-      method: 'GET',
-      mode: 'no-cors',
-    }).then(async(res) => res.json());
+
+    console.log(url)
+
+    const response = await fetch(url).then(async(res) => res.json());
+
     console.log(response)
 
 
