@@ -23,8 +23,13 @@ export default function Home() {
 
 
   const makeRequest = async (ticker) => {
+    // remote server:
+    // const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json());
 
-    const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json());
+    // local server:
+    const response = await fetch(`${SERVER_CLASS}/${ticker}`).then(async(res) => res.json());
+    console.log(response)
+
 
     if(response.error){
       alert("that's not found")
