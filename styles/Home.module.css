@@ -1,20 +1,20 @@
 .mainWrapper {
-  padding: 1rem .5rem;
+  padding: .5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: .6rem;
 }
+
 
 .h1 {
   margin: .12rem 0rem;
-  font-size: normal;
+  font-size: 1rem;
 }
 
 .h2 {
   margin: 0rem 0rem .5rem 0rem;
   font-weight: 400;
-  font-size: small;
+  font-size: .8rem;
 }
 
 /* ---------------------------------------------------------- */
