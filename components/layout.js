@@ -26,17 +26,6 @@ export default function Layout({ children }) {
                     <meta name="twitter:card" content="summary_large_image" />
                 </Head>
                 <main className={styles.main}>
-                    {/* <nav className={styles.nav}>
-                        <Link href="/">
-                            <a>etfs</a>
-                        </Link>
-                        <Link href="/mutual-funds">
-                            <a>mutual funds</a>
-                        </Link>
-                        <Link href="/stocks">
-                            <a>stocks</a>
-                        </Link>
-                    </nav> */}
                     {children}
                 </main>
                 <footer className={styles.footer}>

@@ -147,7 +147,7 @@ export default function Home() {
         <title>Mark</title>
         <link rel="icon" href="/favicon4.ico" />
       </Head>
-      <div className={styles.mainGrid}>
+      <div className={styles.mainWrapper}>
       <h1 className={styles.h1}>/mark/</h1>
       <h2 className={styles.h2}>fund comparison tool</h2>
       <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      

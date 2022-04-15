@@ -1,19 +1,18 @@
 .container {
-    padding: .5rem .5rem;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
   }
   
   .main {
-    min-height: 100vh;
-    padding: 1rem 1rem;
-    flex: 1;
+    /* min-height: 100vh; */
+    /* padding: 1rem 1rem; */
+    /* flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
   }
 
   .nav a {
