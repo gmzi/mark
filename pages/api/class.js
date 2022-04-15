@@ -3,7 +3,6 @@
 const SERVER_URL = process.env.SERVER_URL;
 
 export default async function handler(req, res) {
-    console.log('run')
     let ticker = req.query.ticker.toLowerCase();
     const response = await fetch(`${SERVER_URL}/class/${ticker}`).then(async(res) => res.json());
     if (response.error){
