@@ -148,16 +148,16 @@ export default function Home() {
         <link rel="icon" href="/favicon4.ico" />
       </Head>
       <div className={styles.mainWrapper}>
-      <h1 className={styles.h1}>/mark/</h1>
-      <h2 className={styles.h2}>fund comparison tool</h2>
-      <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
-      {loading &&
-          <div>
-            <p>Fetching data...</p>
-          </div>
-      }
-      {references}
-      <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
+        <h1 className={styles.h1}>|mark|</h1>
+        <h2 className={styles.h2}>fund comparison tool</h2>
+        <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
+        {loading &&
+            <div>
+              <p>Fetching data...</p>
+            </div>
+        }
+        {references}
+        <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
       </div>
     </Layout>
   )
