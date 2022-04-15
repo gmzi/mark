@@ -37,6 +37,7 @@ export default function Autocomplete({makeRequest, setLoading}){
     }
 
     const onKeyDown = (key) => {
+        alert('key pressed')
         if (key.keyCode === 13 || key.keyCode === 9) {
             if (filteredSuggestions[activeSuggestionIndex]){
                 setInput(filteredSuggestions[activeSuggestionIndex].trim())
