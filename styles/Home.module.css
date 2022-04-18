@@ -85,31 +85,6 @@
   background-color: #dad9d06c;
 }
 
-.etfHead {
-  /* background-color: #012057f5; */
-  background-color: #00ffff80;
-}
-
-.etfSpan {
-  color: #2a002a;
-}
-
-.mfHead {
-  background-color:#ff00ff82;
-}
-
-.mfSpan {
-  color: rgb(255, 255, 255);
-}
-
-.stockHead {
-  background-color: rgba(255, 255, 0, 0.515);
-}
-
-.stockSpan {
-  color: #000e38;
-}
-
 /* ----------------------------------------- */
 
 .refList {
@@ -135,19 +110,6 @@
   padding: .5rem .5rem;
   margin: 0rem .1rem;
 }
-
-.refEtf {
-  background-color: #223392;
-}
-
-.refMf {
-  background-color: #abd1ff;
-}
-
-.refStock {
-  background-color: #ffcb3b;
-}
-
 
 /* ----------------------------------------- */
 

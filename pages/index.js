@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
 import Table from '../components/Table';
 import Autocomplete from '../components/autocomplete';
+import { colors } from '../lib/colors';
 
 
 const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -110,9 +111,9 @@ export default function Home() {
 
   function makeReferences(arr1, arr2, arr3){
     const items = {
-      etf: arr1.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refEtf}`}></div>ETFs</li>): null,
-      mf: arr2.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refMf}`}></div>Mutual Funds</li>): null,
-      stock: arr3.length > 0 ? (<li><div className={`${styles.refBox} ${styles.refStock}`}></div>Stocks</li>): null
+      etf: arr1.length > 0 ? (<li><div className={`${styles.refBox}`} style={{backgroundColor: colors.etf.background}}></div>ETFs</li>): null,
+      mf: arr2.length > 0 ? (<li><div className={`${styles.refBox}`} style={{backgroundColor: colors.mf.background}}></div>Mutual Funds</li>): null,
+      stock: arr3.length > 0 ? (<li><div className={`${styles.refBox}`} style={{backgroundColor: colors.stock.background}}></div>Stocks</li>): null
     }
     let etfsInTable = 0
     let mfsInTable = 0
