@@ -1,8 +1,8 @@
 .mainWrapper {
-  padding: .5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 0rem;
 }
 
 
@@ -21,19 +21,15 @@
 /* TABLE STYLES */
 
 .tableWrapper {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
   width: 100%;
-  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .table {
   border: 1px solid rgb(214, 206, 206);
   border-collapse: collapse;
-  /* position: relative; */
-  width: 100%;
+  /* width: 100%; */
 }
 
 .tHead {
@@ -48,6 +44,7 @@
 
 .th {
   border: 8px solid white;
+  max-width: 15rem;
 }
 
 .td {
@@ -55,6 +52,7 @@
   border-right: 1px solid rgba(0, 128, 0, 0.151);
   padding: 0.5rem;
   line-height: 1.1rem;
+  max-width: 15rem;
 }
 
 .td a {

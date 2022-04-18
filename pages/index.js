@@ -127,8 +127,9 @@ export default function Home() {
       stocksInTable = 1;
     }
     const classesInTable = etfsInTable + mfsInTable + stocksInTable
-    const totalLength = arr1.length + arr2.length + arr3.length;
-    if (totalLength > 1 && classesInTable > 1){
+    // const totalLength = arr1.length + arr2.length + arr3.length;
+    // if (totalLength > 1 && classesInTable > 1){
+    if (classesInTable > 1){
       return (
         <ul className={styles.refList}>
           {items.etf}
