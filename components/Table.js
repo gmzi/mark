@@ -83,9 +83,9 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
           <>
       <div className={styles.tableWrapper}>
           <table className={styles.table}>
-            <thead className={`${styles.tHead} ${styles.emptyHead}`}>
+            <thead>
               <tr>
-                <th className={styles.th}></th>
+                <th className={`${styles.th} ${styles.emptyHead}`}></th>
                 {tableHeadList}
                 {MFtableHeadList}
                 {STOCKtableHeadList}
