@@ -94,7 +94,7 @@ export default function Autocomplete({makeRequest, setLoading}){
                 value={input}
                 placeholder="enter ticker symbol"
             />
-            <input type="submit"/>
+            <input type="submit" value="add to comparison"/>
             {showSuggestions && input && 
                     <SuggestionsList filteredSuggestions={filteredSuggestions} activeSuggestionIndex={activeSuggestionIndex} onClick={onClick}/>
             }

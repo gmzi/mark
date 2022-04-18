@@ -17,7 +17,7 @@ a {
 a:link,
 a:visited,
 a:focus {
-  color: blue;
+  color: rgb(30, 75, 255);
 }
 
 a:hover {

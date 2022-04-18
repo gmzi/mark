@@ -178,6 +178,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                     <td className={`${styles.td} ${styles.rowTitle}`}>Capital Gains History</td>
                     {ETFPlaceholder}
                     {MFcapitalGainsHistoryList}
+                    {STOCKPlaceholder}
                   </tr>
               ): null}
                 {etfTickers.length || MFTickers.length ? (
