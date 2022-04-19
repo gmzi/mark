@@ -104,6 +104,16 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 {MFweekRange52List}
                 {STOCKweekRange52List}
               </tr>
+              {MFTickers.length ? (
+              <>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>5 year</td>
+                {ETFPlaceholder}
+                {MFyear5List}
+                {STOCKPlaceholder}
+              </tr>
+                </>
+              ): null}
               {etfTickers.length ? (
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
@@ -240,19 +250,29 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 {MFrankingList}
                 {STOCKPlaceholder}
               </tr>
-              <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Fund Family</td>
-                {familyList}
-                {MFfamilyList}
-                {STOCKPlaceholder}
-              </tr>
               </>
                 ): null}
+              {MFTickers.length ? (
+              <>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Category</td>
+                {ETFPlaceholder}
+                {MFcategoryList}
+                {STOCKPlaceholder}
+              </tr>
+                </>
+              ): null}
               <tr>
                 <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
                 {policyList}
                 {MFpolicyList}
                 {STOCKpolicyList}
+              </tr>
+              <tr>
+                <td className={`${styles.td} ${styles.rowTitle}`}>Fund Family</td>
+                {familyList}
+                {MFfamilyList}
+                {STOCKPlaceholder}
               </tr>
               {etfTickers.length ? (
                   <tr>
