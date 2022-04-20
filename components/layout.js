@@ -29,14 +29,14 @@ export default function Layout({ children }) {
                     {children}
                 </main>
                 <footer className={styles.footer}>
-                    <span className={styles.logo}>made by {' '}</span>
+                    <span className={styles.logo}>made for academic purposes only, repo on </span>
                     <a
-                        href="https://github.com/gmzi"
+                        href="https://github.com/gmzi/mark.git"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
                         <span className={styles.logo}>
-                            me
+                            github
                         </span>
                     </a>
                 </footer>
