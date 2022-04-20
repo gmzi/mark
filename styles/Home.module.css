@@ -62,7 +62,10 @@
   text-align: right;
 }
 
-.td {
+.td, 
+.rowTitle,
+.isParagraph,
+.topAlign {
   border-bottom: 1px solid rgba(0, 0, 255, 0.096);
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.189); */
   border-right: 1px solid rgba(0, 128, 0, 0.151);
@@ -71,8 +74,31 @@
   max-width: 15rem;
 }
 
+.td {
+  text-align: center;
+}
+
 .td a {
   line-height: normal;
+}
+
+.topAlign {
+  vertical-align: top;
+  text-align: center;
+}
+
+.dataContainer table {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dataContainer td {
+  border-bottom: 1px solid rgba(160, 160, 160, 0.16);
+  padding: 0rem .5rem;
 }
 
 .isParagraph p {
@@ -111,11 +137,7 @@
   margin: 0rem .1rem;
 }
 
-/* ----------------------------------------- */
 
-.topAlign {
-  vertical-align: top;
-}
 
 /* ---------------------------------------- */
 /* FORM */

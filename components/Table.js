@@ -28,12 +28,12 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const MFfamilyList = MFData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const MFcategoryList = MFData.map((obj, i) => <TableData key={`${i}-cat-mf`} data={obj.category} />)
   const MFpolicyList = MFData.map((obj, i) => <TableData key={`${i}-policy-mf`} data={obj.policy} isParagraph={true} />)
-  const MFincomeHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-income-history-mf`} data={obj.income_history} topAlign={true} />)
-  const MFcapitalGainsHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-cap-gains-mf`} data={obj.capital_gains_history} topAlign={true} />)
+  const MFincomeHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-income-history-mf`} data={obj.income_history} />)
+  const MFcapitalGainsHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-cap-gains-mf`} data={obj.capital_gains_history} />)
   const MFsectorList = MFData.map((obj, i) => <NestedTable key={`${i}-sector-mf`} data={obj.sector_allocation} />)
-  const MFreturnHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-return-h-mf`} data={obj.return_history} topAlign={true} />)
-  const MFtop10List = MFData.map((obj, i) => <NestedTable key={`${i}-holdings-mf`} data={obj.holdings_10} topAlign={false} />)
-  const MFrankingList = MFData.map((obj, i) => <NestedTable key={`${i}-ranking-mf`} data={obj.lipper_ranking} topAlign={false} />)
+  const MFreturnHistoryList = MFData.map((obj, i) => <NestedTable key={`${i}-return-h-mf`} data={obj.return_history} />)
+  const MFtop10List = MFData.map((obj, i) => <NestedTable key={`${i}-holdings-mf`} data={obj.holdings_10} />)
+  const MFrankingList = MFData.map((obj, i) => <NestedTable key={`${i}-ranking-mf`} data={obj.lipper_ranking} />)
 // --------------------------------------------------------------------------------------------------------------
 // ETFs
   const tableHeadList = etfTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"etf"} ticker={e} remove={remove} />)
@@ -47,10 +47,10 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const yieldList = etfData.map((obj, i) => <TableData key={`${i}-${obj.yield}`} data={obj.yield} />)
   const dividendLastList = etfData.map((obj, i) => <TableData key={`${i}-${obj.dividend_last}`} data={obj.dividend_last} />)
   const sectorList = etfData.map((obj, i) => <NestedTable key={`${i}-sector`} data={obj.sector_allocation} />)
-  const dividendHistoryList = etfData.map((obj, i) => <NestedTable key={`${i}-dividend-history`} data={obj.dividend_history} topAlign={true} />)
-  const returnHistoryList = etfData.map((obj, i) => <NestedTable key={`${i}-return-history`} data={obj.return_history} topAlign={true} />)
-  const top10List = etfData.map((obj, i) => <NestedTable key={`${i}-top10`} data={obj.holdings_10} topAlign={false} />)
-  const rankingList = etfData.map((obj, i) => <NestedTable key={`${i}-ranking-etf`} data={obj.lipper_ranking} topAlign={false} />)
+  const dividendHistoryList = etfData.map((obj, i) => <NestedTable key={`${i}-dividend-history`} data={obj.dividend_history} />)
+  const returnHistoryList = etfData.map((obj, i) => <NestedTable key={`${i}-return-history`} data={obj.return_history} />)
+  const top10List = etfData.map((obj, i) => <NestedTable key={`${i}-top10`} data={obj.holdings_10} />)
+  const rankingList = etfData.map((obj, i) => <NestedTable key={`${i}-ranking-etf`} data={obj.lipper_ranking} />)
   const familyList = etfData.map((obj, i) => <TableData key={`${i}-${obj.fund_family}`} data={obj.fund_family} />)
   const legalList = etfData.map((obj, i) => <TableData key={`${i}-${obj.legal_type}`} data={obj.legal_type} />)
   const policyList = etfData.map((obj, i) => <TableData key={`${i}-policy-etf`} data={obj.policy} isParagraph={true} />)
@@ -94,13 +94,13 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
             </thead>
             <tbody>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Price $</td>
+                <td className={styles.rowTitle}>Price $</td>
                 {priceList}
                 {MFpriceList}
                 {STOCKpriceList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>52W Range</td>
+                <td className={styles.rowTitle}>52W Range</td>
                 {weekRange52List}
                 {MFweekRange52List}
                 {STOCKweekRange52List}
@@ -108,7 +108,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {MFTickers.length ? (
               <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>5 year</td>
+                <td className={styles.rowTitle}>5 year</td>
                 {ETFPlaceholder}
                 {MFyear5List}
                 {STOCKPlaceholder}
@@ -117,7 +117,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               ): null}
               {etfTickers.length ? (
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>NAV</td>
+                <td className={styles.rowTitle}>NAV</td>
                 {navList}
                 {MFPlaceholder}
                 {STOCKPlaceholder}
@@ -126,19 +126,19 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {etfTickers.length || MFTickers.length ? (
               <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Net assets</td>
+                <td className={styles.rowTitle}>Net assets</td>
                 {netAssetsList}
                 {MFnetAssetsList}
                 {STOCKPlaceholder}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Turnover</td>
+                <td className={styles.rowTitle}>Turnover</td>
                 {turnoverList}
                 {MFturnoverList}
                 {STOCKPlaceholder}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Expense Ratio</td>
+                <td className={styles.rowTitle}>Expense Ratio</td>
                 {expenseList}
                 {MFexpenseList}
                 {STOCKPlaceholder}
@@ -149,13 +149,13 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {stockTickers.length ? (
                   <>
                     <tr>
-                        <td className={`${styles.td} ${styles.rowTitle}`}>EPS(TTM)</td>
+                        <td className={styles.rowTitle}>EPS(TTM)</td>
                         {ETFPlaceholder}
                         {MFPlaceholder}
                         {STOCKepsList}
                     </tr>
                     <tr>
-                        <td className={`${styles.td} ${styles.rowTitle}`}>P/E(TTM)</td>
+                        <td className={styles.rowTitle}>P/E(TTM)</td>
                         {ETFPlaceholder}
                         {MFPlaceholder}
                         {STOCKpeList}
@@ -163,13 +163,13 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                   </>
               ): null}
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Yield</td>
+                <td className={styles.rowTitle}>Yield</td>
                 {yieldList}
                 {MFyieldList}
                 {STOCKdividendYieldList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Latest Dividend</td>
+                <td className={styles.rowTitle}>Latest Dividend</td>
                 {dividendLastList}
                 {MFincomeDividendList}
                 {STOCKdividendList}
@@ -177,7 +177,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {etfTickers.length || MFTickers.length ? (
                   <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Dividend History</td>
+                <td className={styles.rowTitle}>Dividend History</td>
                 {dividendHistoryList}
                 {MFincomeHistoryList}
                 {STOCKPlaceholder}
@@ -186,7 +186,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               ) : null}
               {MFTickers.length ? (
                   <tr>
-                    <td className={`${styles.td} ${styles.rowTitle}`}>Capital Gains History</td>
+                    <td className={styles.rowTitle}>Capital Gains History</td>
                     {ETFPlaceholder}
                     {MFcapitalGainsHistoryList}
                     {STOCKPlaceholder}
@@ -195,19 +195,19 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 {etfTickers.length || MFTickers.length ? (
               <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Total Returns History</td>
+                <td className={styles.rowTitle}>Total Returns History</td>
                 {returnHistoryList}
                 {MFreturnHistoryList}
                 {STOCKPlaceholder}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Sector Allocation</td>
+                <td className={styles.rowTitle}>Sector Allocation</td>
                 {sectorList}
                 {MFsectorList}
                 {STOCKPlaceholder}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Top holdings</td>
+                <td className={styles.rowTitle}>Top holdings</td>
                 {top10List}
                 {MFtop10List}
                 {STOCKPlaceholder}
@@ -215,7 +215,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               </>
                 ): null}
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Beta</td>
+                <td className={styles.rowTitle}>Beta</td>
                 {betaList}
                 {MFbetaList}
                 {STOCKbetaList}
@@ -224,19 +224,19 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {MFTickers.length ? (
                   <>
                   <tr>
-                    <td className={`${styles.td} ${styles.rowTitle}`}>Alpha</td>
+                    <td className={styles.rowTitle}>Alpha</td>
                     {ETFPlaceholder}
                     {MFalphaList}
                     {STOCKPlaceholder}
                   </tr>
                   <tr>
-                    <td className={`${styles.td} ${styles.rowTitle}`}>S. Deviation</td>
+                    <td className={styles.rowTitle}>S. Deviation</td>
                     {ETFPlaceholder}
                     {MFstandardDevidationList}
                     {STOCKPlaceholder}
                   </tr>
                   <tr>
-                    <td className={`${styles.td} ${styles.rowTitle}`}>R. Squared</td>
+                    <td className={styles.rowTitle}>R. Squared</td>
                     {ETFPlaceholder}
                     {MFrSquaredList}
                     {STOCKPlaceholder}
@@ -246,7 +246,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {etfTickers.length || MFTickers.length ? (
                   <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>YTD Lipper Ranking</td>
+                <td className={styles.rowTitle}>YTD Lipper Ranking</td>
                 {rankingList}
                 {MFrankingList}
                 {STOCKPlaceholder}
@@ -256,7 +256,7 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               {MFTickers.length ? (
               <>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Category</td>
+                <td className={styles.rowTitle}>Category</td>
                 {ETFPlaceholder}
                 {MFcategoryList}
                 {STOCKPlaceholder}
@@ -264,20 +264,20 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 </>
               ): null}
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Investment Policy</td>
+                <td className={styles.rowTitle}>Investment Policy</td>
                 {policyList}
                 {MFpolicyList}
                 {STOCKpolicyList}
               </tr>
               <tr>
-                <td className={`${styles.td} ${styles.rowTitle}`}>Fund Family</td>
+                <td className={styles.rowTitle}>Fund Family</td>
                 {familyList}
                 {MFfamilyList}
                 {STOCKPlaceholder}
               </tr>
               {etfTickers.length ? (
                   <tr>
-                    <td className={`${styles.td} ${styles.rowTitle}`}>Legal Type</td>
+                    <td className={styles.rowTitle}>Legal Type</td>
                     {legalList}
                     {MFPlaceholder}
                     {STOCKPlaceholder}
