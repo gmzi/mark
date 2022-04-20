@@ -263,6 +263,14 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
               </tr>
                 </>
               ): null}
+              {etfTickers.length ? (
+                  <tr>
+                    <td className={styles.rowTitle}>Legal Type</td>
+                    {legalList}
+                    {MFPlaceholder}
+                    {STOCKPlaceholder}
+                  </tr>
+              ): null}
               <tr>
                 <td className={styles.rowTitle}>Investment Policy</td>
                 {policyList}
@@ -275,14 +283,6 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 {MFfamilyList}
                 {STOCKPlaceholder}
               </tr>
-              {etfTickers.length ? (
-                  <tr>
-                    <td className={styles.rowTitle}>Legal Type</td>
-                    {legalList}
-                    {MFPlaceholder}
-                    {STOCKPlaceholder}
-                  </tr>
-              ): null}
             </tbody>
           </table>
       </div>
