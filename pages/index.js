@@ -19,6 +19,39 @@ export default function Home() {
   const [loading, setLoading] = useState()
   const [input, setInput] = useState("")
 
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('localTickers'))) {
+      const localObj = JSON.parse(localStorage.getItem('localTickers'))
+      fillTable(localObj)
+    } 
+}, [])
+
+  async function fillTable(localObj){
+    setLoading(true)
+    const ETFNew = [...etfTickers, ...localObj.etf]
+    setEtfTickers(ETFNew)
+    await fetchData('etf', ETFNew, setEtfData) 
+
+    const MFNew = [...MFTickers, ...localObj.mf]
+    setMFTickers(MFNew)
+    await fetchData('mf', MFNew, setMFData)
+
+    const stockNew = [...stockTickers, ...localObj.stock]
+    setStockTickers(stockNew)
+    await fetchData('stock', stockNew, setStockData)
+    setLoading(false)
+  }
+
+  async function fetchData(asset_class, tickersArr, setState){
+    const tickers = tickersArr.map((ticker) => {
+      const fetchIt = fetch(`${SERVER}/${asset_class}/${ticker}`).then((res) => res.json())
+      return fetchIt
+    })
+    const data = await Promise.all(tickers)
+    setState(data)
+    return;
+  }
+  
 
   const makeRequest = async (ticker) => {
 
@@ -37,6 +70,7 @@ export default function Home() {
       }
       const newTickers = [...etfTickers, ticker]
       setEtfTickers(newTickers)
+      saveToLocal('etf', ticker)
       await dataRequest('etf', ticker, etfData, setEtfData, setLoading)
       } else if (response.asset_class === 'Mutual Funds') {
         if (isDuplicate(MFTickers, ticker)) {
@@ -45,6 +79,7 @@ export default function Home() {
         }
         const newTickers = [...MFTickers, ticker]
         setMFTickers(newTickers)
+        saveToLocal('mf', ticker)
         await dataRequest("mf", ticker, MFData, setMFData, setLoading)
       } else if (response.asset_class === 'Stocks') {
         if (isDuplicate(stockTickers, ticker)) {
@@ -53,6 +88,7 @@ export default function Home() {
         }
         const newTickers = [...stockTickers, ticker]
         setStockTickers(newTickers)
+        saveToLocal('stock', ticker)
         await dataRequest("stock", ticker, stockData, setStockData, setLoading)
       }
       return;
@@ -83,12 +119,14 @@ export default function Home() {
   }
 
   const remove = (asset_class, ticker) => {
+    const localTickers = JSON.parse(localStorage.getItem('localTickers'))
     if (asset_class === 'stock') {
       const indexOfObject = stockData.findIndex((obj) => obj.symbol === ticker)
       stockData.splice(indexOfObject, 1)
       setStockData(stockData)
       const removedArr = [...stockTickers].filter((e) => e !== ticker)
       setStockTickers(removedArr)
+      updateLocal('stock', removedArr)
       return;
     }
     if (asset_class === 'etf') {
@@ -97,6 +135,7 @@ export default function Home() {
       setEtfData(etfData)
       const removedArr = [...etfTickers].filter((e) => e !== ticker)
       setEtfTickers(removedArr)
+      updateLocal('etf', removedArr)
       return;
     }
     if (asset_class === 'mf') {
@@ -105,7 +144,16 @@ export default function Home() {
       setMFData(MFData)
       const removedArr = [...MFTickers].filter((e) => e !== ticker)
       setMFTickers(removedArr)
+      updateLocal('mf', removedArr)
       return;
+    }
+  }
+
+  function updateLocal(asset_class, tickerArray){
+    const localTickers = JSON.parse(localStorage.getItem('localTickers'))
+    if (localTickers){
+      localTickers[asset_class] = [...tickerArray]
+      localStorage.setItem('localTickers', JSON.stringify(localTickers))
     }
   }
 
@@ -143,6 +191,23 @@ export default function Home() {
   }
 
 
+  function saveToLocal(asset_class, ticker){
+    const localTickers = JSON.parse(localStorage.getItem('localTickers'))
+    if (localTickers){
+      const newArray = [...localTickers[asset_class], ticker]
+      localTickers[asset_class] = newArray
+      localStorage.setItem('localTickers', JSON.stringify(localTickers))
+    } else {
+      const localObj = {
+        "etf": [],
+        "mf": [],
+        "stock": []
+      }
+      localObj[asset_class] = [ticker];
+      localStorage.setItem('localTickers', JSON.stringify(localObj))
+    }
+  }
+
   return (
     <Layout>
       <Head>
@@ -153,11 +218,11 @@ export default function Home() {
         <h1 className={styles.h1}>|mark|</h1>
         <h2 className={styles.h2}>fund comparison tool</h2>
         <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
-        {loading &&
+        {loading ? (
             <div>
               <p>Fetching data...</p>
             </div>
-        }
+        ): null}
         {references}
         <Table etfTickers={etfTickers} etfData={etfData} MFTickers={MFTickers} MFData={MFData} stockTickers={stockTickers} stockData={stockData} loading={loading} remove={remove}/>
       </div>

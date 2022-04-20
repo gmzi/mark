@@ -4,11 +4,8 @@ import {colors} from '../lib/colors';
 
 export default function TableHead({asset_class, ticker, remove}){
 
-    console.log(colors)
-
     const displayTicker = ticker.toUpperCase();
-
-
+    
     const handleClose = () => {
         remove(asset_class, ticker)
     }

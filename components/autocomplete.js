@@ -75,6 +75,23 @@ export default function Autocomplete({makeRequest, setLoading}){
         } else {
             tickerInput = input.trim().toLowerCase()    
         }
+
+        // const localTickers = JSON.parse(localStorage.getItem('localTickers'))
+        
+        // if (localTickers){
+        //     const newArray = [...localTickers, tickerInput]
+        //     localStorage.setItem(
+        //         'localTickers',
+        //         JSON.stringify(newArray)
+        //     );
+        // } else {
+        //     const newArray = [tickerInput]
+        //     localStorage.setItem(
+        //         'localTickers',
+        //         JSON.stringify(newArray)
+        //     );
+        // }
+        
         await makeRequest(tickerInput)
         setFilteredSuggestions([]);
         setActiveSuggestionIndex(0);
