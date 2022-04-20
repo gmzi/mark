@@ -29,15 +29,13 @@ export default function Home() {
   async function fillTable(localObj){
     setLoading(true)
     const ETFNew = [...etfTickers, ...localObj.etf]
-    setEtfTickers(ETFNew)
-    await fetchData('etf', ETFNew, setEtfData) 
-
     const MFNew = [...MFTickers, ...localObj.mf]
-    setMFTickers(MFNew)
-    await fetchData('mf', MFNew, setMFData)
-
     const stockNew = [...stockTickers, ...localObj.stock]
+    setEtfTickers(ETFNew)
+    setMFTickers(MFNew)
     setStockTickers(stockNew)
+    await fetchData('etf', ETFNew, setEtfData) 
+    await fetchData('mf', MFNew, setMFData)
     await fetchData('stock', stockNew, setStockData)
     setLoading(false)
   }
