@@ -41,6 +41,20 @@ export default function Home() {
   }
 
   async function fetchData(asset_class, tickersArr, setState){
+    // TWO REQUESTS TO MAKE IF IT'S A STOCK:
+    if (asset_class === 'stock'){
+      const tickers = tickersArr.map(async (ticker) => {
+        const fetchIt = fetch(`${SERVER}/${asset_class}/${ticker}`).then((res) => res.json())
+        const fetchGraham = fetch(`${SERVER}/price_limit/${ticker}`).then((res) => res.json())
+        const basicData = await Promise.resolve(fetchIt)
+        const grahamData = await Promise.resolve(fetchGraham)
+        const allData = {...basicData, ...grahamData}
+        return allData
+      })
+      const data = await Promise.all(tickers)
+      setState(data)
+      return;
+    }
     const tickers = tickersArr.map((ticker) => {
       const fetchIt = fetch(`${SERVER}/${asset_class}/${ticker}`).then((res) => res.json())
       return fetchIt
@@ -51,6 +65,7 @@ export default function Home() {
   }
   
 
+  // Grabas ticker from form, classifies it, check if exists, fetch data and add to table:
   const makeRequest = async (ticker) => {
 
     const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json());
@@ -103,6 +118,23 @@ export default function Home() {
   }
 
   async function dataRequest(asset_class, ticker, stateData, setStateData){
+    // If it's a stock, there are two routes to request, 
+    // make them separately and then combine responses:
+    if (asset_class === 'stock'){
+      const res = await fetch(`${SERVER}/${asset_class}/${ticker}`)
+      const graham_res = await fetch(`${SERVER}/price_limit/${ticker}`)
+        if (res.ok && graham_res.ok) {
+          const result = await res.json();
+          const graham_result = await graham_res.json();
+          const newData = [...stateData, {...result, ...graham_result}]
+          setStateData(newData)
+        } else {
+          alert("that's not found")
+          remove(asset_class, ticker)
+        }
+        setLoading(false)
+      return;
+    }
     const res = await fetch(`${SERVER}/${asset_class}/${ticker}`)
         if (res.ok){
           const result = await res.json();

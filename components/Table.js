@@ -60,6 +60,7 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"stock"} ticker={e} remove={remove} />)
   const STOCKpriceList = stockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const STOCKweekRange52List = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
+  const STOCKgrahamPriceLimitList = stockData.map((obj, i) => <TableData key={`${i}-${obj.limit_7}`} data={obj.graham_price_limit} />)
   const STOCKepsList = stockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)
   const STOCKpeList = stockData.map((obj, i) => <TableData key={`${i}-${obj.p_e}`} data={obj.p_e} />)
   const STOCKmktCapList = stockData.map((obj, i) => <TableData key={`${i}-${obj.market_cap}`} data={obj.market_cap} />)
@@ -148,6 +149,12 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
 
               {stockTickers.length ? (
                   <>
+                    <tr>
+                        <td className={styles.rowTitle}>Price Limit*</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKgrahamPriceLimitList}
+                    </tr>
                     <tr>
                         <td className={styles.rowTitle}>EPS(TTM)</td>
                         {ETFPlaceholder}
@@ -284,6 +291,14 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                 {STOCKPlaceholder}
               </tr>
             </tbody>
+            {stockTickers.length ? (
+              <tfoot>
+                <tr>
+                  <td>* Graham formula</td>
+                  <th></th>
+                </tr>
+              </tfoot>
+            ): null}
           </table>
       </div>
       </>
