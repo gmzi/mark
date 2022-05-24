@@ -60,7 +60,7 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"stock"} ticker={e} remove={remove} />)
   const STOCKpriceList = stockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
   const STOCKweekRange52List = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
-  const STOCKgrahamPriceLimitList = stockData.map((obj, i) => <TableData key={`${i}-${obj.limit_7}`} data={obj.graham_price_limit} />)
+  const STOCKgrahamPriceLimitList = stockData.map((obj, i) => <TableData key={`${i}-${obj.graham_7}`} data={`${obj.graham_7} - ${obj.graham_12}`} />)
   const STOCKepsList = stockData.map((obj, i) => <TableData key={`${i}-${obj.eps}`} data={obj.eps} />)
   const STOCKpeList = stockData.map((obj, i) => <TableData key={`${i}-${obj.p_e}`} data={obj.p_e} />)
   const STOCKmktCapList = stockData.map((obj, i) => <TableData key={`${i}-${obj.market_cap}`} data={obj.market_cap} />)
