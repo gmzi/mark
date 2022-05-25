@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import Layout from '../components/layout'
@@ -245,8 +246,10 @@ export default function Home() {
         <link rel="icon" href="/favicon4.ico" />
       </Head>
       <div className={styles.mainWrapper}>
-        <h1 className={styles.h1}>|mark|</h1>
-        <h2 className={styles.h2}>fund comparison tool</h2>
+        <a className={styles.logoLink} href="/">
+          <h1 className={styles.h1}>|mark|</h1>
+          <h2 className={styles.h2}>fund comparison tool</h2>
+        </a>
         <Autocomplete input={input} setInput={setInput} makeRequest={makeRequest} setLoading={setLoading}/>      
         {loading ? (
             <div>

@@ -6,6 +6,20 @@
   align-items: center;
 }
 
+.logoLink {
+  text-decoration: none;
+  text-align: center;
+}
+
+.logoLink:active,
+.logoLink:visited {
+  color: black;
+}
+
+.logoLink:hover {
+  color: rgb(185, 116, 116);
+}
+
 .form,
 .refList {
   margin: 1rem 1rem;
