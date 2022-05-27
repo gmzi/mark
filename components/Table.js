@@ -67,6 +67,10 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
   const STOCKmktCapList = stockData.map((obj, i) => <TableData key={`${i}-${obj.market_cap}`} data={obj.market_cap} />)
   const STOCKbetaList = stockData.map((obj, i) => <TableData key={`${i}-${obj.beta}`} data={obj.beta} />)
   const STOCKdividendList = stockData.map((obj, i) => <TableData key={`${i}-${obj.dividend}`} data={obj.latest_dividend} />)
+  const STOCKgrowthEstimatesList = stockData.map((obj, i) => <NestedTable key={`${i}-growth_estimates`} data={obj.growth_estimates} />)
+  // const STOCKgrowthEstimateYear = stockData.map((obj, i) => <TableData key={`${i}-${obj.growth_estimate_year}`} data={obj.growth_estimate_year} />)
+  // const STOCKgrowthEstimateNext5 = stockData.map((obj, i) => <TableData key={`${i}-${obj.growth_estimate_next_5}`} data={obj.growth_estimate_next_5} />)
+  // const STOCKgrowthEstimatePast5 = stockData.map((obj, i) => <TableData key={`${i}-${obj.growth_estimate_past_5}`} data={obj.growth_estimate_past_5} />)
   const STOCKdividendYieldList = stockData.map((obj, i) => <TableData key={`${i}-${obj.dividend_yield}`} data={obj.dividend_yield} />)
   const STOCKdividendHistoryList = stockData.map((obj, i) => <NestedTable key={`${i}-dividend-history`} data={obj.dividend_history} />)
   const STOCKpolicyList = stockData.map((obj, i) => <TableData key={`${i}-policy-stock`} data={obj.policy} isParagraph={true} />)
@@ -174,6 +178,12 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                         {ETFPlaceholder}
                         {MFPlaceholder}
                         {STOCKepsList}
+                    </tr>
+                    <tr>
+                        <td className={styles.rowTitle}>Est. Growth</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKgrowthEstimatesList}
                     </tr>
                   </>
               ): null}
