@@ -326,6 +326,9 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
             ): null}
           </table>
       </div>
+      <div>
+        <a href="https://tools.finra.org/fund_analyzer/" target="_blank" rel="noreferrer">finra fund analyzer</a>
+      </div>
       </>
         ) : null}
     </>
