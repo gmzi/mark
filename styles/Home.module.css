@@ -116,6 +116,10 @@
   padding: 0rem .5rem;
 }
 
+.isParagraph {
+  vertical-align: top;
+}
+
 .isParagraph p {
   width: 14rem;
   padding: 0px 0px;
