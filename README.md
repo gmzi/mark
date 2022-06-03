@@ -4,9 +4,9 @@ Screen financial assets (etfs, mutual funds and stocks) over metrics other than 
 
 ## Usage
 
-- Set a server with these GET routes:
-  1. `/class/<ticker>`
-  2. `/etf/<ticker>`
-  3. `/mf/<ticker>`
-  4. `/stock/<ticker>`
+- Set up a server with these GET routes:
+  1. `/class?ticker=<ticker>`
+  2. `/etf?ticker=<ticker>`
+  3. `/mf?ticker=<ticker>`
+  4. `/stock?ticker=<ticker>`
 - Install packages and `npm run dev` in terminal.
