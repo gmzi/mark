@@ -44,8 +44,8 @@ export default function Home() {
     // TWO REQUESTS TO MAKE IF IT'S A STOCK:
     if (asset_class === 'stock'){
       const tickers = tickersArr.map(async (ticker) => {
-        const fetchIt = fetch(`${SERVER}/${asset_class}/${ticker}`).then((res) => res.json())
-        const fetchGraham = fetch(`${SERVER}/price_limit/${ticker}`).then((res) => res.json())
+        const fetchIt = fetch(`${SERVER}/${asset_class}?ticker=${ticker}`).then((res) => res.json())
+        const fetchGraham = fetch(`${SERVER}/price_limit?ticker=${ticker}`).then((res) => res.json())
         const basicData = await Promise.resolve(fetchIt)
         const grahamData = await Promise.resolve(fetchGraham)
         const allData = {...basicData, ...grahamData}
@@ -56,7 +56,7 @@ export default function Home() {
       return;
     }
     const tickers = tickersArr.map((ticker) => {
-      const fetchIt = fetch(`${SERVER}/${asset_class}/${ticker}`).then((res) => res.json())
+      const fetchIt = fetch(`${SERVER}/${asset_class}?ticker=${ticker}`).then((res) => res.json())
       return fetchIt
     })
     const data = await Promise.all(tickers)
@@ -68,7 +68,7 @@ export default function Home() {
   // Grabas ticker from form, classifies it, check if exists, fetch data and add to table:
   const makeRequest = async (ticker) => {
 
-    const response = await fetch(`${SERVER}/class/${ticker}`).then(async(res) => res.json());
+    const response = await fetch(`${SERVER}/class?ticker=${ticker}`).then(async(res) => res.json());
 
     if(response.error){
       alert("that's not found")
@@ -121,8 +121,8 @@ export default function Home() {
     // If it's a stock, there are two routes to request, 
     // make them separately and then combine responses:
     if (asset_class === 'stock'){
-      const res = await fetch(`${SERVER}/${asset_class}/${ticker}`)
-      const graham_res = await fetch(`${SERVER}/price_limit/${ticker}`)
+      const res = await fetch(`${SERVER}/${asset_class}?ticker=${ticker}`)
+      const graham_res = await fetch(`${SERVER}/price_limit?ticker=${ticker}`)
         if (res.ok && graham_res.ok) {
           const result = await res.json();
           const graham_result = await graham_res.json();
@@ -135,7 +135,7 @@ export default function Home() {
         setLoading(false)
       return;
     }
-    const res = await fetch(`${SERVER}/${asset_class}/${ticker}`)
+    const res = await fetch(`${SERVER}/${asset_class}?ticker=${ticker}`)
         if (res.ok){
           const result = await res.json();
           const newData = [...stateData, result]
