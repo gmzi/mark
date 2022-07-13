@@ -180,6 +180,12 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
                         {STOCKepsList}
                     </tr>
                     <tr>
+                        <td className={styles.rowTitle}>MKT CAP</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKmktCapList}
+                    </tr>
+                    <tr>
                         <td className={styles.rowTitle}>Est. Growth</td>
                         {ETFPlaceholder}
                         {MFPlaceholder}

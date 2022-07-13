@@ -4,6 +4,8 @@ Screen financial assets (etfs, mutual funds and stocks) over metrics other than 
 
 ## Usage
 
+`npm run dev` to run locally.
+
 - Set up a server with these GET routes:
   1. `/class?ticker=<ticker>`
   2. `/etf?ticker=<ticker>`
