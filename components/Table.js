@@ -59,6 +59,7 @@ export default function Table({etfTickers, etfData, MFTickers, MFData, stockTick
  // const stockList = stockTickers.map((s, i) => <StockLinkList key={`${i}-${s}`} stockTicker={s} remove={remove} />)
   const STOCKtableHeadList = stockTickers.map((e, i) => <TableHead key={`${i}-${e}`} asset_class={"stock"} ticker={e} remove={remove} />)
   const STOCKpriceList = stockData.map((obj, i) => <TableData key={`${i}-${obj.price}`} data={obj.price} />)
+  const STOCKsharesOutstandingList = stockData.map((obj, i) => <TableData key={`${i}-${obj.shares_outstanding}`} data={obj.shares_outstanding} />)
   const STOCKweekRange52List = stockData.map((obj, i) => <TableData key={`${i}-${obj.week_range_52}`} data={obj.week_range_52} />)
   const STOCKgrahamPriceLimitList = stockData.map((obj, i) => <TableData key={`${i}-${obj.graham_7}`} data={`${obj.graham_7} - ${obj.graham_12}`} />)
   const STOCKbookValuePerShareList = stockData.map((obj, i) => <TableData key={`${i}-${obj.book_value_per_share}`} data={obj.book_value_per_share} />)
@@ -155,6 +156,12 @@ const STOCKPlaceholder = stockTickers.map((e, i) => <td className={`${styles.td}
 
               {stockTickers.length ? (
                   <>
+                    <tr>
+                        <td className={styles.rowTitle}>Shares Outstanding</td>
+                        {ETFPlaceholder}
+                        {MFPlaceholder}
+                        {STOCKsharesOutstandingList}
+                    </tr>
                     <tr>
                         <td className={styles.rowTitle}>Price Limit*</td>
                         {ETFPlaceholder}
